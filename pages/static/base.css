@@ -7,7 +7,7 @@ body {
 }
 
 .nav-left {
-    margin-top: -.5em;
+    margin-top: -.25em;
     position: absolute;
     text-align: left;
     font-size: 1em;
@@ -17,14 +17,13 @@ body {
     padding: 1rem;
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(5, auto);
     justify-content: right;
     text-align: center;
 }
 
 .nav-bar a {
     text-decoration: none;
-    text-transform: uppercase;
     display: block;
     margin-top: -.9em;
     padding: 1rem;
