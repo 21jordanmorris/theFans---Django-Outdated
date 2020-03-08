@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/base.css">
+    <title>twentyfourseconds</title>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-left">
+            <h1>twentyfourseconds</h1>
+        </div>
+        <ul class="nav-links nav-right">
+            <li><a href="#">Articles</a></li>
+            <li><a href="#">Games</a></li>
+            <li><a href="about">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        {% block content %}
+        {% endblock content %}
+    </div>
+</body>
+</html>
