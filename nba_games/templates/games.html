@@ -1,0 +1,9 @@
+<h1>Games</h1>
+
+{% for game in object_list %}
+    {% if game.is_today %}
+        <div class="nba-game">
+            <a href=""><h3>{{ game.home_team }} {{ game.visitor_team }} {{ game.home_score }} {{ game.visitor_score }} {{ game.home_probability }} {{ game.visitor_probability }}</h3></a>
+        </div>
+    {% endif %}
+{% endfor %}

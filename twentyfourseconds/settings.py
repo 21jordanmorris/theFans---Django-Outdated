@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'pages',
     'users',
+    'nba_games',
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'

@@ -17,7 +17,7 @@
         </div>
         <ul class="nav-links nav-right">
             <li><a href="#">Articles</a></li>
-            <li><a href="#">Games</a></li>
+            <li><a href="{% url 'games' %}">Games</a></li>
             <li><a href="{% url 'about' %}">About</a></li>
             {% if user.is_authenticated %}
                 <li><a href="{% url 'update_user' user.pk %}">{{ user.username }}</a></li>

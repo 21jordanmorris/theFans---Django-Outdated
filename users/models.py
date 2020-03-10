@@ -5,9 +5,21 @@ from django.utils.translation import gettext as _
 class CustomUser(AbstractUser):
     TEAMS = (
         ('none', _('NBA')),
-        ('pelicans', _('New Orleans Pelicans')),
-        ('lakers', _('Los Angeles Lakers')),
+        ('hawks', _('Atlanta Hawks')),
         ('celtics', _('Boston Celtics')),
+        ('nets', _('Brooklyn Nets')),
+        ('hornets', _('Charlotte Hornets')),
+        ('bulls', _('Chicago Bulls')),
+        ('cavaliers', _('Cleveland Cavaliers')),
+        ('mavericks', _('Dallas Mavericks')),
+        ('nuggets', _('Denver Nuggets')),
+        ('pistons', _('Denver Pistons')),
+        ('warriors', _('Golden State Warriors')),
+        ('rockets', _('Houston Rockets')),
+        ('pacers', _('Indiana Pacers')),
+        ('clippers', _('Los Angeles Clippers')),
+        ('lakers', _('Los Angeles Lakers')),
+        
     )
 
     email = models.EmailField(unique=True)
