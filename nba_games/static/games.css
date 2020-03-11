@@ -9,17 +9,16 @@ body {
     margin-top: -30px;
 }
 
-.arrow:hover ~ .arrow-outline {
+.arrow:hover + .arrow-outline {
     fill: rgb(0, 154, 217); 
 }
 
 .container {
-    position: absolute;
     display: grid;
-    grid-template-columns: repeat(4, auto);
-    margin-top: 2em;
-    margin-left: 8em;
-    margin-right: 2em;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    justify-items: center;
+    margin: 6rem;
+    margin-top: 2rem;
 }
 
 .card {
@@ -98,8 +97,10 @@ body {
 
 .circle {
     position: absolute;
-    top: 150px;
+    top: 275px;
     left: calc(50% - 60px);
+    transform: rotate(-90deg);
+    transform-origin: top left;
 }
 
 .stroke {
