@@ -82,6 +82,6 @@ with open(CSV_PATH, newline='') as csvfile:
         if not row[0] == "DATE":
             if not row[2] == '':
                 Game.objects.create(date=row[0], visitor_team=row[1], visitor_score=int(float(row[2])), home_team=row[3], home_score=int(float(row[4])),
-                                visitor_probability=float(row[total_cols-2]), home_probability=float(row[total_cols-1]))
+                                visitor_probability=round(float(row[total_cols-2]) * 100, 2), home_probability=round(float(row[total_cols-1]) * 100, 2))
             else:
-                Game.objects.create(date=row[0], visitor_team=row[1], home_team=row[3], visitor_probability=float(row[total_cols-2]), home_probability=float(row[total_cols-1]))
+                Game.objects.create(date=row[0], visitor_team=row[1], home_team=row[3], visitor_probability=round(float(row[total_cols-2]) * 100, 2), home_probability=round(float(row[total_cols-1]) * 100, 2))

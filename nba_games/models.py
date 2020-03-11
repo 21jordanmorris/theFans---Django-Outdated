@@ -19,3 +19,12 @@ class Game(models.Model):
     @property
     def is_today(self):
         return date.today() == self.date
+    
+    @property
+    def get_today(self):
+        return str(date.today())
+    
+    @property
+    def get_prob_for_circle(self):
+        home_prob = float(self.home_probability/100)
+        return  (314.16 * (1 - home_prob))

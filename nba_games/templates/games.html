@@ -1,9 +1,44 @@
-<h1>Games</h1>
+{% load static %}
 
-{% for game in object_list %}
-    {% if game.is_today %}
-        <div class="nba-game">
-            <a href=""><h3>{{ game.home_team }} {{ game.visitor_team }} {{ game.home_score }} {{ game.visitor_score }} {{ game.home_probability }} {{ game.visitor_probability }}</h3></a>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'games.css' %}"/>
+</head>
+<body>
+    <div class="header">
+        <div class="nav-button">
+            <a href="{% url 'index' %}"><svg class="arrow" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48" viewBox="0 0 172 172"
+                style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g class="arrow-outline" fill="#ffffff"><path d="M86,6.88c-43.65844,0 -79.12,35.46156 -79.12,79.12c0,43.65844 35.46156,79.12 79.12,79.12c43.65844,0 79.12,-35.46156 79.12,-79.12c0,-43.65844 -35.46156,-79.12 -79.12,-79.12zM86,13.76c39.93625,0 72.24,32.30375 72.24,72.24c0,39.93625 -32.30375,72.24 -72.24,72.24c-39.93625,0 -72.24,-32.30375 -72.24,-72.24c0,-39.93625 32.30375,-72.24 72.24,-72.24zM71.81,55.04c-0.76594,0.08063 -1.49156,0.43 -2.0425,0.9675l-26.9825,27.09l-0.3225,0.1075c-0.08062,0.06719 -0.14781,0.13438 -0.215,0.215v0.1075c-0.08062,0.06719 -0.14781,0.13438 -0.215,0.215c-0.08062,0.06719 -0.14781,0.13438 -0.215,0.215c0,0.04031 0,0.06719 0,0.1075c-0.08062,0.06719 -0.14781,0.13438 -0.215,0.215c0,0.04031 0,0.06719 0,0.1075c-0.215,0.36281 -0.36281,0.76594 -0.43,1.1825c0,0.04031 0,0.06719 0,0.1075c0,0.1075 0,0.215 0,0.3225c0,0.06719 0,0.14781 0,0.215c0,0.04031 0,0.06719 0,0.1075c0.05375,0.45688 0.20156,0.88688 0.43,1.29c0.02688,0.06719 0.06719,0.14781 0.1075,0.215c0.04031,0.04031 0.06719,0.06719 0.1075,0.1075c0.02688,0.06719 0.06719,0.14781 0.1075,0.215c0.04031,0.04031 0.06719,0.06719 0.1075,0.1075c0.04031,0.04031 0.06719,0.06719 0.1075,0.1075c0.04031,0.04031 0.06719,0.06719 0.1075,0.1075c0.18813,0.20156 0.40313,0.38969 0.645,0.5375l26.875,26.9825c1.37063,1.37063 3.57438,1.37063 4.945,0c1.37063,-1.37062 1.37063,-3.57437 0,-4.945l-21.6075,-21.6075h74.175c1.23625,0.01344 2.39188,-0.63156 3.02344,-1.70656c0.61813,-1.075 0.61813,-2.39187 0,-3.46687c-0.63156,-1.075 -1.78719,-1.72 -3.02344,-1.70656h-74.175l21.6075,-21.6075c1.11531,-1.03469 1.41094,-2.67406 0.73906,-4.03125c-0.65844,-1.37062 -2.15,-2.12312 -3.64156,-1.88125z"></path></g></g></svg>
+            </a>
         </div>
-    {% endif %}
-{% endfor %}
+
+        <h1 style="text-align: center; margin-top: 2em; color: white;">NBA Game Prediction Probabilities</h1>
+        {% for game in object_list|slice:":1" %}
+            <h3 style="text-align: center; margin-top: 2em; color: white;">{{ game.get_today }}</h3>
+        {% endfor %}
+    </div>
+
+    <div class="container">
+        {% for game in object_list %}
+            {% if game.is_today %}
+                <a href="test.html">
+                <div class="card">
+                    <h3 class="title home">{{game.home_team}}</h3>
+                    <h3 class="title visitor">{{game.visitor_team}}</h3>
+                    <h3 class="title home home-prob">{{game.home_probability}}%</h3>
+                    <h3 class="title visitor visitor-prob">{{game.visitor_probability}}%</h3>
+                    <div class="bar">
+                        <div class="emptybar"></div>
+                        <div class="filledbar"></div>
+                    </div>
+                    <div class="circle">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="stroke" cx="60" cy="60" r="50"  stroke-dasharray="314.16" stroke-dashoffset="{{ game.get_prob_for_circle }}"/>
+                        </svg>
+                    </div>
+                </div>
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+</body>
