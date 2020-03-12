@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import date
+from datetime import date, timedelta
 
 class Game(models.Model):
     date = models.DateField()
@@ -25,6 +25,27 @@ class Game(models.Model):
         return str(date.today())
     
     @property
-    def get_prob_for_circle(self):
+    def get_tomorrow(self):
+        return str(date.today() + timedelta(1))
+    
+    @property
+    def is_tomorrow(self):
+        return (date.today() + timedelta(1)) == self.date
+
+    @property
+    def get_yesterday(self):
+        return str(date.today() + timedelta(-1))
+    
+    @property
+    def is_yesterday(self):
+        return (date.today() + timedelta(-1)) == self.date
+    
+    @property
+    def get_home_prob_for_circle(self):
         home_prob = float(self.home_probability/100)
-        return  (314.16 * (1 - home_prob))
+        return  (364.42 * (1 - home_prob))
+    
+    @property
+    def get_visitor_prob_for_circle(self):
+        vis_prob = float(self.visitor_probability/100)
+        return (364.42 * (1 - vis_prob))

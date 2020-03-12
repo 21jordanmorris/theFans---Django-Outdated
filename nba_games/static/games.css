@@ -4,21 +4,28 @@ body {
 }
 
 .arrow {
+    color: white;
     position: absolute;
     margin-left: 10px;
     margin-top: -30px;
+    font-size: 42px;
 }
 
-.arrow:hover + .arrow-outline {
-    fill: rgb(0, 154, 217); 
+.arrow:hover {
+    color: rgb(0,154,217);
 }
 
 .container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, 300px);
+    justify-content: center;
     justify-items: center;
-    margin: 6rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 2rem;
+    margin-bottom: 2rem;
+    max-width: 1200px;
 }
 
 .card {
@@ -26,9 +33,9 @@ body {
     height: 280px;
     width: 200px;
     background-color: #17141d;
+    border: 1px solid #17141d;
     border-radius: 10px;
     box-shadow: -1rem 0 3rem #000;
-    /*   margin-left: -50px; */
     transition: 0.4s ease-out;
     position: relative;
     left: 0px;
@@ -36,11 +43,11 @@ body {
     padding: 1em;
 }
 
-/* .card:hover ~ .card {
-    position: relative;
-    left: 50px;
-    transition: 0.4s ease-out;
-} */
+.card:hover {
+    border: 1px solid rgb(0,154,217);
+    box-shadow: 0px 0px 1px 1px rgba(0,154,217, 0.5);
+    transition: 0.2s ease-in-out;
+}
 
 .title {
     color: white;
@@ -97,18 +104,28 @@ body {
 
 .circle {
     position: absolute;
-    top: 275px;
+    top: 265px;
     left: calc(50% - 60px);
     transform: rotate(-90deg);
     transform-origin: top left;
 }
 
+.circle-bottom {
+    transform: rotate(-90deg) scaleY(-1);
+    transform-origin: top left;
+    margin-left: 120px;
+}
+
 .stroke {
     stroke: rgba(0,154,217,1);
     transition: 0.6s ease-out;
+    fill: #17141d;
+    stroke-width: 2px;
 }
 
-svg {
+.inner-stroke {
+    stroke: rgba(255,186,0,1);
+    transition: 0.6s ease-out;
     fill: #17141d;
     stroke-width: 2px;
 }

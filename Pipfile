@@ -10,6 +10,7 @@ django = "*"
 gunicorn = "*"
 scikit-learn = "*"
 basketball-reference-scraper = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.7"
