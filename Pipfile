@@ -11,6 +11,7 @@ gunicorn = "*"
 scikit-learn = "*"
 basketball-reference-scraper = "*"
 pillow = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.7"
