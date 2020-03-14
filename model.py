@@ -8,10 +8,8 @@ import pandas as pd
 import numpy as np
 import sys, csv
 
-#TODO:
-#	- Figure out why lower win percentage increases odds to win
-#	- Once figured out, get win shares of players declared out and adjust team win percentage based on missing win shares
-
+# TODO: Test database update when NBA games start back up. Should no longer update percentages of past games
+#       and should also update prior day's scores.
 
 scaler = MinMaxScaler()
 
@@ -55,7 +53,7 @@ def SVMModel(print_bool):
 
 average = SVMModel(True)
 average = pd.DataFrame(average, columns=[['VISITOR_WIN_PROB', 'HOME_WIN_PROB']])
-sys.stderr.write("[Progress] 1/50 runs completed.\n")
+sys.stderr.write("[PROGRESS] 1/50 runs completed.\n")
 sys.stderr.flush()
 
 for n in range(0, 49):
@@ -63,7 +61,7 @@ for n in range(0, 49):
     nth_run = pd.DataFrame(nth_run, columns=[['VISITOR_WIN_PROB', 'HOME_WIN_PROB']])
     average = average.add(nth_run).div(2)
     if (n+2) % 5 == 0:
-        sys.stderr.write("[Progress] " + str(n+2) + "/50 runs completed.\n")
+        sys.stderr.write("[PROGRESS] " + str(n+2) + "/50 runs completed.\n")
         sys.stderr.flush()
 
 df_2020 = pd.concat([df_2020, average], axis=1, sort=True)
@@ -77,11 +75,29 @@ CSV_PATH = 'season_2020.csv'
 
 with open(CSV_PATH, newline='') as csvfile:
     reader = csv.reader(csvfile, delimiter=',', quotechar=';')
-    Game.objects.all().delete()
     for row in reader:
         if not row[0] == "DATE":
-            if not row[2] == '':
-                Game.objects.create(date=row[0], visitor_team=row[1], visitor_score=int(float(row[2])), home_team=row[3], home_score=int(float(row[4])),
-                                visitor_probability=round(float(row[total_cols-2]) * 100, 2), home_probability=round(float(row[total_cols-1]) * 100, 2))
+            if row[2] == '':
+                try:
+                    # Updates games that have not been played yet.
+                    game = Game.objects.get(date=row[0], visitor_team=row[1], home_team=row[3])
+                    game.visitor_probability = round(float(row[total_cols-2]) * 100, 2)
+                    game.home_probability = round(float(row[total_cols-1]) * 100)
+                    game.save()
+                except Game.DoesNotExist:
+                    Game.objects.create(date=row[0], visitor_team=row[1], home_team=row[3], visitor_probability=round(float(row[total_cols-2]) * 100, 2), home_probability=round(float(row[total_cols-1]) * 100, 2))
+                except:
+                    print("[ERROR] Unexpected error occured when attempting to update database.")
             else:
-                Game.objects.create(date=row[0], visitor_team=row[1], home_team=row[3], visitor_probability=round(float(row[total_cols-2]) * 100, 2), home_probability=round(float(row[total_cols-1]) * 100, 2))
+                try:
+                    # Updates the scores of games that have been played (from yesterday)
+                    game = Game.objects.get(date=row[0], visitor_team=row[1], home_team=row[3])
+                    if (game.home_score == ''):
+                        game.home_score = int(float(row[4]))
+                        game.visitor_score = int(float(row[2]))
+                        game.save()
+                except Game.DoesNotExist:
+                    Game.objects.create(date=row[0], visitor_team=row[1], visitor_score=int(float(row[2])), home_team=row[3], home_score=int(float(row[4])),
+                                visitor_probability=round(float(row[total_cols-2]) * 100, 2), home_probability=round(float(row[total_cols-1]) * 100, 2))
+                except:
+                    print("[ERROR] Unexpected error occured when attempting to update database.")

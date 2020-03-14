@@ -28,3 +28,7 @@ class UserPasswordChangeView(PasswordChangeView):
 class UserPasswordResetView(PasswordResetView):
     success_url = reverse_lazy('login')
     template_name = 'reset_password.html'
+
+class UserRegistrationView(generic.base.TemplateView):
+    success_url = reverse_lazy('index')
+    template_name = 'registration.html'

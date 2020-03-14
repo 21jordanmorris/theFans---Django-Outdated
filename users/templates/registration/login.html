@@ -1,13 +1,17 @@
+{% extends 'user_base.html' %}
+
+{% block content %}
+
 <h4>Login</h4>
 
 <form method="post">
     {% csrf_token %}
-    <table border="0">
-        {{ form }}
-    </table>
+    {{ form }}
     <button type="submit">Login</button>
     <h5>Not registered?</h5>
     <a href="{% url 'signup' %}">Sign Up</a>
 </form>
 
 <a href="{% url 'reset_password' %}">Forgot Password?</a>
+
+{% endblock content %}
