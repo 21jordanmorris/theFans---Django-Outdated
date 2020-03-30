@@ -4,8 +4,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="{% static 'games.css' %}"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Montserrat&display=swap" rel="stylesheet">
     <title>twentyfourseconds</title>
 </head>
+
 <body>
     <div class="header">
         <div class="nav-button">
@@ -25,8 +27,8 @@
                 <div class="card">
                     <h3 class="title home">{{game.home_team}}</h3>
                     <h3 class="title visitor">{{game.visitor_team}}</h3>
-                    <h3 class="title home home-prob">{{game.home_probability}}%</h3>
-                    <h3 class="title visitor visitor-prob">{{game.visitor_probability}}%</h3>
+                    <h3 class="title home home-prob">{{game.home_probability}}<span>%</span></h3>
+                    <h3 class="title visitor visitor-prob">{{game.visitor_probability}}<span>%</span></h3>
                     <div class="bar">
                         <div class="emptybar"></div>
                         <div class="filledbar"></div>

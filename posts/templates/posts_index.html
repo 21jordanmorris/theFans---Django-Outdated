@@ -1,0 +1,7 @@
+<h1>{{ title }}</h1>
+
+{% for obj in object_list %}
+    <a href="{{ obj.get_absolute_url }}"><b>{{ obj.title }}</b></a><br/>
+    Written by: {{ obj.author }}<br/>
+    {{ obj.timestamp }}<br/><br/>
+{% endfor %}

@@ -1,6 +1,8 @@
 body {
     background-color: #100e17;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    
 }
 
 .arrow {
@@ -12,7 +14,7 @@ body {
 }
 
 .arrow:hover {
-    color: rgb(0,154,217);
+    color: rgb(10, 37, 189);
 }
 
 .container {
@@ -44,8 +46,8 @@ body {
 }
 
 .card:hover {
-    border: 1px solid rgb(0,154,217);
-    box-shadow: 0px 0px 1px 1px rgba(0,154,217, 0.5);
+    border: 1px solid #0A25BD;
+    box-shadow: 0px 0px 1px 1px rgba(10, 37, 189, .5);
     transition: 0.2s ease-in-out;
 }
 
@@ -64,12 +66,13 @@ body {
     top: 40px;
 }
 
-.home-prob {
+.home-prob, .visitor-prob {
+    font-family: 'IBM Plex Mono', monospace;
     left: 145px;
 }
 
-.visitor-prob {
-    left: 145px;
+span {
+    font-family: 'Montserrat', sans-serif;
 }
 
 .bar {
@@ -92,8 +95,9 @@ body {
     z-index: 3;
     width: 190px;
     height: 100%;
-    background: rgb(0,154,217);
-    background: linear-gradient(90deg, rgba(0,154,217,1) 0%, rgba(217,147,0,1) 65%, rgba(255,186,0,1) 100%);
+    background: #0A25BD;
+    box-shadow: 0rem 0 3rem #000;
+    /* background: linear-gradient(to right, rgba(10, 37, 189, 1) 0%, rgba(18, 50, 228, 0.5) 100%, rgba(0,154,217,1)); */
     transition: 0.6s ease-out;
 }
 
@@ -117,14 +121,14 @@ body {
 }
 
 .stroke {
-    stroke: rgba(0,154,217,1);
+    stroke: rgb(255, 255, 255);
     transition: 0.6s ease-out;
     fill: #17141d;
     stroke-width: 2px;
 }
 
 .inner-stroke {
-    stroke: rgba(255,186,0,1);
+    stroke: rgb(10, 37, 189);
     transition: 0.6s ease-out;
     fill: #17141d;
     stroke-width: 2px;

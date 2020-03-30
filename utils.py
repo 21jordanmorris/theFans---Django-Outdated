@@ -80,9 +80,13 @@ def get_teams_last_twenty_init():
         'DET','GSW','HOU','IND','LAC','LAL','MEM','MIA', 
         'MIL','MIN','NOP','NYK','OKC','ORL','PHI','PHO', 
         'POR','SAC','SAS','TOR','UTA','WAS']
-    teams_last = {k:how_many_games for k in teams}
+    team_dict = { teams[0] : how_many_games }
+    for i in range(1, 30):
+        temp_list = how_many_games.copy()
+        team_dict.update({ teams[i] : temp_list })
     
-    return teams_last
+
+    return team_dict
 
 def get_win_loss_percentage_last_twenty(team, team_dict):
     current_last_twenty = team_dict[team]
@@ -112,4 +116,5 @@ def get_missing_win_shares(injury_report, team):
 
 def get_first_no_result_date(entire_schedule):
     upcoming_games = entire_schedule[pd.isnull(entire_schedule['HOME_PTS'])].head(1)
+    x = upcoming_games['DATE']
     return list(upcoming_games['DATE'])[0]

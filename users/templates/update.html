@@ -2,14 +2,21 @@
 
 {% block content %}
 
-<h4>Profile</h4>
+<a href="{% url 'index' %}"><i class="arrow far fa-arrow-alt-circle-left" style="z-index:999;"></i></a>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit">Save Changes</button>
-</form>
+{% comment %} <div id="particles-js"></div> {% endcomment %}
 
-<a href="{% url 'change_password' %}">Change Password</a>
+<h1>Profile</h1>
+
+<div class="container" id="container">
+    <div class="form-container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit">Save Changes</button>
+            <a href="{% url 'change_password' %}">Change Password</a>
+        </form>
+    </div>
+</div>
 
 {% endblock content%}

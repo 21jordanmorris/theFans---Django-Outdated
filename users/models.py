@@ -19,6 +19,7 @@ class CustomUser(AbstractUser):
         ('pacers', _('Indiana Pacers')),
         ('clippers', _('Los Angeles Clippers')),
         ('lakers', _('Los Angeles Lakers')),
+        ('pelicans', _('New Orleans Pelicans')),
         
     )
 
@@ -29,7 +30,6 @@ class CustomUser(AbstractUser):
         choices=TEAMS,
         default='none',
         )
-    profile_pic = models.ImageField(null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
     USERNAME_FIELD = 'username'

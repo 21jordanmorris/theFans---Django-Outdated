@@ -30,5 +30,6 @@ class UserPasswordResetView(PasswordResetView):
     template_name = 'reset_password.html'
 
 class UserRegistrationView(generic.base.TemplateView):
+    form_class = CustomUserCreationForm
     success_url = reverse_lazy('index')
     template_name = 'registration.html'

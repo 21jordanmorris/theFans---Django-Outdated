@@ -7,23 +7,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <title>twentyfourseconds</title>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="nav-bar">
         <div class="nav-left">
-            <h1><a href="{% url 'index' %}">twentyfourseconds</a></h1>
+            <h1>twentyfourseconds</h1>
         </div>
         <ul class="nav-links nav-right">
-            <li><a href="#">Articles</a></li>
+            <li><a href="{% url 'post_list' %}">Posts</a></li>
             <li><a href="{% url 'games' %}">Games</a></li>
-            <li><a href="{% url 'about' %}">About</a></li>
             {% if user.is_authenticated %}
                 <li><a href="{% url 'update_user' user.pk %}">{{ user.username }}</a></li>
                 <li><a href="{% url 'logout' %}">Log Out</a></li>
             {% else %}
-                <li><a href="{% url 'login' %}">Sign In</a></li>
+                <li><a href="{% url 'login' %}">Log In</a></li>
             {% endif %}
         </ul>
     </nav>

@@ -68,7 +68,7 @@ def convert_team_names(entire_schedule):
 def add_winner_column(entire_schedule):
     winner = []
     for index, row in entire_schedule.iterrows():
-        if np.isnan(row['HOME_PTS']) or np.isnan(row['VISITOR_PTS']):
+        if pd.isna(row['HOME_PTS']) or pd.isna(row['VISITOR_PTS']):
             winner.insert(index, float('Nan'))
         elif row['HOME_PTS'] > row['VISITOR_PTS']:
             winner.insert(index, 1)
@@ -271,7 +271,7 @@ def add_last_twenty(entire_schedule):
         home_last_twenty_percent.append(get_win_loss_percentage_last_twenty(row['HOME'], team_last_twenty))
         visitor_last_twenty_percent.append(get_win_loss_percentage_last_twenty(row['VISITOR'], team_last_twenty))
         
-        if not np.isnan(row['WINNER']):
+        if not pd.isna(row['WINNER']):
             temp_home = team_last_twenty[row['HOME']]
             temp_home.pop(0)
             temp_visitor = team_last_twenty[row['VISITOR']]

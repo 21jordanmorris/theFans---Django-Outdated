@@ -12,6 +12,7 @@ scikit-learn = "*"
 basketball-reference-scraper = "*"
 pillow = "*"
 whitenoise = "*"
+mlxtend = "*"
 
 [requires]
 python_version = "3.7"

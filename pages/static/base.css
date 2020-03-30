@@ -1,5 +1,6 @@
 body {
-    background: white;
+    background: #100e17;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .nav-bar {
@@ -7,10 +8,10 @@ body {
 }
 
 .nav-left {
-    margin-top: -.25em;
     position: absolute;
     text-align: left;
-    font-size: 1em;
+    font-size: .75em;
+    color: white;
 }
 
 .nav-bar ul {
@@ -28,13 +29,36 @@ body {
     margin-top: -.9em;
     padding: 1rem;
     font-size: .75em;
-    color: black;
+    color: #fff;
+    
 }
 
 .nav-bar a:hover {
-    color: purple;
+    color: #0A25BD;
 }
 
 .container {
     margin: 0px 30px 0px 30px;
 }
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
