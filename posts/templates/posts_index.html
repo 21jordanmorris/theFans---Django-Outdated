@@ -1,33 +1,86 @@
 {% extends 'post_base.html' %}
 
+{% block stylesheets %}
+    {% load static %}
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'post_index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+{% endblock stylesheets %}
+
 {% block content %}
 
-<h1>{{ title }}</h1>
+<body>
 
-<a href="{% url 'create'%}">Create New - Add permissions to see this</a></br></br>
+    <nav class="nav-bar">
+        <div class="nav-left">
+            <h1 onclick="window.location.href="/"">twentyfourseconds</h1>
+        </div>
+        <ul class="nav-links nav-right">
+            {% if request.user.is_staff or request.user.is_superuser %}
+                <li><a href="{% url 'create'%}">Create New</a></li>
+            {% endif %}
+            <li><a href="{% url 'games' %}">Games</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'update_user' user.slug %}">{{ user.username }}</a></li>
+                <li><a href="{% url 'logout' %}">Log Out</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Log In</a></li>
+            {% endif %}
+        </ul>
+    </nav>
 
-{% for obj in page_obj %}
-    <a href="{{ obj.get_absolute_url }}"><b>{{ obj.title }}</b></a><br/>
-    Written by: {{ obj.author }}<br/>
-    {{ obj.timestamp }}<br/><br/>
-{% endfor %}
+    {% for obj in page_obj %}
+        <div class="blog-card">
+            <div class="meta">
+                {% if obj.image %}
+                    <div class="photo" style="background-image: url({{ obj.image.url }})"></div>
+                    {% comment %} <img src='{{ obj.image.url }}' width="200" height="150"/><br/> {% endcomment %}
+                {% endif %}
+                <ul class="details">
+                    <li class="author"><a href="#">Written by: {{ obj.author }}</a></li>
+                    <li class="date">{{ obj.timestamp }}</li>
+                    {% comment %} <li class="tags">
+                    <ul>
+                        <li><a href="#">Learn</a></li>
+                        <li><a href="#">Code</a></li>
+                        <li><a href="#">HTML</a></li>
+                        <li><a href="#">CSS</a></li>
+                    </ul>
+                    </li> {% endcomment %}
+                </ul>
+            </div>
+            <div class="description">
+                <h1>{{ obj.title }}</h1>
+                <h2>{{ obj.summary }}</h2>
+                <p>{{ obj.content|truncatechars:150}}</p>
+                <p class="read-more">
+                    <a href="{{ obj.get_absolute_url }}">Read More</a>
+                </p>
+            </div>
+            {% comment %} <a href="{{ obj.get_absolute_url }}"><b>{{ obj.title }}</b></a><br/>
+            Written by: {{ obj.author }}<br/>
+            {{ obj.timestamp }}<br/><br/> {% endcomment %}
+        </div>
+    {% endfor %}
 
-<div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
 
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
         </span>
+    </div>
 
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-</div>
+</body>
 
 {% endblock content %}

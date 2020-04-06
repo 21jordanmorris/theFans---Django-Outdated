@@ -19,7 +19,7 @@ class UserUpdateView(generic.UpdateView):
         if user.is_superuser:
             return CustomUser.objects.all()
         else:
-            return CustomUser.objects.filter(id=user.id)
+            return CustomUser.objects.filter(slug=user.slug)
 
 class UserPasswordChangeView(PasswordChangeView):
     success_url = reverse_lazy('index')

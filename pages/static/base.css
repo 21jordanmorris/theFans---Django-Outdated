@@ -23,14 +23,13 @@ body {
     text-align: center;
 }
 
-.nav-bar a {
+.nav-bar a{
     text-decoration: none;
     display: block;
     margin-top: -.9em;
     padding: 1rem;
     font-size: .75em;
     color: #fff;
-    
 }
 
 .nav-bar a:hover {

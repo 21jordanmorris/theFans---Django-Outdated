@@ -1,6 +1,7 @@
 from django.urls import path, include
-from .views import GamesView
+from .views import *
 
 urlpatterns = [
-    path('games/', GamesView.as_view(), name='games'),
+    path('', GamesView.as_view(), name='games'),
+    path('<int:id>/', game_detail, name='game_detail')
 ]

@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.core.paginator import Paginator
@@ -7,7 +7,9 @@ from .models import Post
 from .forms import PostForm
 
 def post_create(request):
-    form = PostForm(request.POST or None)
+    if not request.user.is_staff and not request.user.is_superuser: 
+        raise Http404
+    form = PostForm(request.POST or None, request.FILES or None)
 
     if form.is_valid():
         instance = form.save(commit=False)
@@ -22,19 +24,18 @@ def post_create(request):
 
     return render(request, "post_form.html", context)
 
-def post_detail(request, pk=None):
-    instance = get_object_or_404(Post, id=pk)
-
+def post_detail(request, slug=None):
+    instance = get_object_or_404(Post, slug=slug)
     context = {
         "title": instance.title,
-        "instance": instance
+        "instance": instance,
     }
 
     return render(request, "post_detail.html", context)
 
 def post_list(request):
     queryset = Post.objects.all()
-    paginator = Paginator(queryset, 10)
+    paginator = Paginator(queryset, 5)
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -47,10 +48,12 @@ def post_list(request):
 
     return render(request, "posts_index.html", context)
 
-def post_update(request, pk=None):
-    instance = get_object_or_404(Post, id=pk)
+def post_update(request, slug=None):
+    if not request.user.is_staff and not request.user.is_superuser: 
+        raise Http404
+    instance = get_object_or_404(Post, slug=slug)
 
-    form = PostForm(request.POST or None, instance=instance)
+    form = PostForm(request.POST or None, request.FILES or None, instance=instance)
 
     if form.is_valid():
         instance = form.save(commit=False)
@@ -68,8 +71,10 @@ def post_update(request, pk=None):
 
     return render(request, "post_form.html", context)
 
-def post_delete(request, pk=None):
-    instance = get_object_or_404(Post, id=pk)
+def post_delete(request, slug=None):
+    if not request.user.is_staff and not request.user.is_superuser: 
+        raise Http404
+    instance = get_object_or_404(Post, slug=slug)
     instance.delete()
     messages.success(request, instance.title + " deleted.")
     return redirect('post_list')
