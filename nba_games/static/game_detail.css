@@ -1,0 +1,41 @@
+.right-side-container {
+    display: flex;
+    justify-content: flex-end;
+    align-content: right;
+    margin-top: 1rem;
+    margin-right: 1rem;
+}
+
+.right-side {
+    display: flex;
+    align-items: right;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 1200px;
+}
+
+.arrow {
+    margin: 2rem;
+    margin-top: 1rem;
+    position: absolute;
+}
+
+.card {
+    margin: 1rem;
+    padding: 1rem;
+    width: 215px;
+    margin-bottom: .5rem;
+}
+
+.home-prob, .visitor-prob {
+    left: 155px;
+}
+
+.bar, .filledbar, .emptybar {
+    width: 205px;
+}
+
+.twitter-timeline {
+    margin: 1rem;
+    padding: 1rem;
+}

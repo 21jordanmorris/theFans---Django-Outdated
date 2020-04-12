@@ -13,6 +13,7 @@ basketball-reference-scraper = "*"
 pillow = "*"
 whitenoise = "*"
 mlxtend = "*"
+nba-api = "*"
 
 [requires]
 python_version = "3.7"

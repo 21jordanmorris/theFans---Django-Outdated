@@ -1,5 +1,44 @@
-<h1>Home: {{ home_team }}</h1>
-<h1>Visitor: {{ visitor_team }}</h1>
+{% load static %}
 
-<h1>Home Prob: {{ home_prob }}</h1>
-<h1>Visitor Prob: {{ visitor_prob }}</h1>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'games.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'game_detail.css' %}"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Montserrat&display=swap" rel="stylesheet">
+    <title>twentyfourseconds</title>
+</head>
+
+<div class="header">
+    <div class="nav-button">
+        <a  href="{% url 'games' %}"><i class="arrow far fa-arrow-alt-circle-left"></i></a>
+    </div>
+</div>
+
+<div class="right-side-container">
+    <div class="right-side">
+        <div class="card">
+            <h3 class="title home">{{ home_team }}</h3>
+            <h3 class="title visitor">{{ visitor_team }}</h3>
+            <h3 class="title home home-prob">{{ home_prob }}<span>%</span></h3>
+            <h3 class="title visitor visitor-prob">{{ visitor_prob }}<span>%</span></h3>
+            <div class="bar">
+                <div class="emptybar"></div>
+                <div class="filledbar"></div>
+            </div>
+            <div class="circle circle-top">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg">   
+                    <circle class="stroke" cx="60" cy="60" r="58"  stroke-dasharray="364.42" stroke-dashoffset="{{ instance.get_home_prob_for_circle }}"/>
+                </svg>
+            </div>
+            <div class="circle circle-bottom">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg">   
+                    <circle class="inner-stroke" cx="60" cy="60" r="58"  stroke-dasharray="364.42" stroke-dashoffset="{{ instance.get_visitor_prob_for_circle }}"/>
+                </svg>
+            </div>
+        </div>
+        
+        <a class="twitter-timeline" data-width="250" data-height="400" data-theme="light" href="https://twitter.com/{{ home_user }}/lists/{{ home_twitter }}?ref_src=twsrc%5Etfw">{{ home_twitter }}</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <a class="twitter-timeline" data-width="250" data-height="400" data-theme="light" href="https://twitter.com/{{ visitor_user }}/lists/{{ visitor_twitter }}?ref_src=twsrc%5Etfw">{{ visitor_twitter }}</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+</div>

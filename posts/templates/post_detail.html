@@ -1,20 +1,43 @@
 {% extends 'post_base.html' %}
 
+{% block stylesheets %}
+    {% load static %}
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'post_detail.css' %}">
+{% endblock stylesheets %}
+
+{% block links %}
+    <li><a href="{% url 'post_list'%}">Posts</a></li>
+{% endblock links %}
+
 {% block content %}
 
-<h1>{{ title }}</h1>
+<div class="container">
+    <div class="article-container">
+        <h1 class="title">{{ title }}</h1>
 
-Written: {{ instance.timestamp }}, Last Updated: {{ instance.updated }}<br/><br/>
+        <p>By: {{ instance.author }}</p>
 
-{% if instance.image %}
-    <img src='{{ instance.image.url }}' width="200" height="150"/>
-{% endif %}
+        <p>Written: {{ instance.timestamp }}, Last Updated: {{ instance.updated }}</p><br/><br/>
 
-<p>{{ instance.content }}</p><br/><br/>
+        {% if instance.image %}
+            <img class="header-img" src='{{ instance.image.url }}'/>
+        {% endif %}
 
-{% if request.user.is_staff or request.user.is_superuser %}
-    <a href="{% url 'update' instance.slug %}">Update</a>
-    <a href="{% url 'delete' instance.slug %}">Delete</a>
-{% endif %}
+        <div class="article-contents">
+            <p>{{ instance.content }}</p><br/><br/>
+        </div>
+        
+    </div>
+
+    <div class="article-links">
+        {% if request.user.is_staff or request.user.is_superuser %}
+            <a href="{% url 'update' instance.slug %}">Update</a>
+            <a href="{% url 'delete' instance.slug %}">Delete</a>
+        {% endif %}
+    </div>
+</div>
+
 
 {% endblock content %}

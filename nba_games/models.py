@@ -1,5 +1,8 @@
 from django.db import models
 from datetime import date, timedelta
+from django.db.models.signals import pre_save
+from django.utils.text import slugify
+from django.contrib.auth import get_user_model
 
 class Game(models.Model):
     date = models.DateField()
@@ -9,12 +12,17 @@ class Game(models.Model):
     visitor_score = models.IntegerField(null=True, blank=True)
     home_probability = models.FloatField()
     visitor_probability = models.FloatField()
+    slug = models.SlugField(unique=True)
 
     REQUIRED_FIELDS = ['date', 'home_team', 'visitor_team', 'home_probability', 'visitor_probability']
 
     def __str__(self):
         game = self.home_team + '/' + self.visitor_team
         return game
+    
+    def get_absolute_url(self):
+        return reverse("game_detail", kwargs={"slug": self.slug})
+    
     
     @property
     def is_today(self):

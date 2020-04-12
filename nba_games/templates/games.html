@@ -23,7 +23,7 @@
     <div class="container">
         {% for game in object_list %}
             {% if game.is_today %}
-                <a href={% url 'game_detail' game.id %}>
+                <a href={% url 'game_detail' game.slug %}>
                 <div class="card">
                     <h3 class="title home">{{game.home_team}}</h3>
                     <h3 class="title visitor">{{game.visitor_team}}</h3>
