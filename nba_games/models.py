@@ -57,3 +57,14 @@ class Game(models.Model):
     def get_visitor_prob_for_circle(self):
         vis_prob = float(self.visitor_probability/100)
         return (364.42 * (1 - vis_prob))
+
+class Message(models.Model):
+    author = models.ForeignKey(get_user_model(), related_name="author_messages", on_delete=models.CASCADE)
+    content = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.author.username
+    
+    def last_30_messages():
+        return Message.objects.order_by('-timestamp').all()[:30]

@@ -1,7 +1,70 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'games.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'post_index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}">
+{% endblock stylesheet %}
+
 {% block content %}
 
-<h1 style="text-align: center; color: white; margin-top: 30vh;">Coming Soon...</h1>
+<div class="index-container">
+    <div class="posts-container">
+        {% for obj in post_list %}
+            <div class="blog-card">
+                <div class="meta">
+                    {% if obj.image %}
+                        <div class="photo" style="background-image: url({{ obj.image.url }})"></div>
+                    {% endif %}
+                    <ul class="details">
+                        <li class="author"><a href="#">Written by: {{ obj.author }}</a></li>
+                        <li class="date">{{ obj.timestamp }}</li>
+                    </ul>
+                </div>
+                <div class="description">
+                    <h1>{{ obj.title }}</h1>
+                    <h2>{{ obj.summary }}</h2>
+                    <p>{{ obj.content|truncatechars:150}}</p>
+                    <p class="read-more">
+                        <a href="{{ obj.get_absolute_url }}">Read More</a>
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+        <a class="view-more-btn" href={% url 'post_list' %}>View More</a>
+    </div>
+
+    <div class="game-container">
+        {% for game in game_list %}
+            <a href={% url 'game_detail' game.slug %}>
+            <div class="card">
+                <h3 class="title home">{{game.home_team}}</h3>
+                <h3 class="title visitor">{{game.visitor_team}}</h3>
+                <h3 class="title home home-prob">{{game.home_probability}}<span>%</span></h3>
+                <h3 class="title visitor visitor-prob">{{game.visitor_probability}}<span>%</span></h3>
+                <div class="bar">
+                    <div class="emptybar"></div>
+                    <div class="filledbar"></div>
+                </div>
+                <div class="circle circle-top">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg">   
+                        <circle class="stroke" cx="60" cy="60" r="58"  stroke-dasharray="364.42" stroke-dashoffset="{{ game.get_home_prob_for_circle }}"/>
+                    </svg>
+                </div>
+                <div class="circle circle-bottom">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg">   
+                        <circle class="inner-stroke" cx="60" cy="60" r="58"  stroke-dasharray="364.42" stroke-dashoffset="{{ game.get_visitor_prob_for_circle }}"/>
+                    </svg>
+                </div>
+            </div>
+            </a>
+        {% endfor %}
+        <a class="view-more-btn" href={% url 'games' %}>View More</a>
+    </div>
+</div>
+
 
 {% endblock content %}

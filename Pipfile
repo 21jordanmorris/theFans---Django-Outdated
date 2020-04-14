@@ -14,6 +14,8 @@ pillow = "*"
 whitenoise = "*"
 mlxtend = "*"
 nba-api = "*"
+channels-redis = "*"
+pypiwin32 = "*"
 
 [requires]
 python_version = "3.7"

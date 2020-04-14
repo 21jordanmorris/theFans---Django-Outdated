@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    'channels',
+
     'nba_games',
     'pages',
     'posts',
@@ -77,6 +79,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'twentyfourseconds.wsgi.application'
+ASGI_APPLICATION = 'twentyfourseconds.routing.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 
 # Database
@@ -133,6 +145,7 @@ STATICFILE_DIRS = [
     os.path.join(BASE_DIR, 'nba_games/static'),
     os.path.join(BASE_DIR, 'users/static'),
     os.path.join(BASE_DIR, 'posts/static'),
+    os.path.join(BASE_DIR, 'chat/static'),
 ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 

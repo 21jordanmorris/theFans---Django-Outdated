@@ -1,0 +1,53 @@
+.blog-card {
+    margin: 1rem auto;
+    margin-right: 3rem;
+    text-align: left;
+}
+
+.posts-container {
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+}
+
+.game-container {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 0;
+}
+
+.card {
+    width: 230px;
+    height: 300px;
+    margin-top: 0;
+}
+
+.index-container {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.view-more-btn {
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: white;
+    padding: .5rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+@media (max-width: 1032px)
+{
+    .blog-card {
+        margin: 1rem auto;
+    }
+}
+
+@media (max-width: 983px)
+{
+    .game-container {
+        display: none;
+    }
+}

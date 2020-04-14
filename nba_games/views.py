@@ -1,11 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
+from django.contrib.auth.decorators import login_required
 from .models import Game
 
 class GamesView(generic.ListView):
     model = Game
     template_name = 'games.html'
 
+@login_required
 def game_detail(request, slug=None):
     instance = get_object_or_404(Game, slug=slug)
 
@@ -29,6 +31,7 @@ def game_detail(request, slug=None):
         "visitor_twitter": convert_team_name(instance.visitor_team),
         "home_user": home_user,
         "visitor_user": visitor_user,
+        "room_name": slug,
     }
     return render(request, "game_detail.html", context)
 
