@@ -46,10 +46,10 @@
         },
         "autobahn": {
             "hashes": [
-                "sha256:6d3989e4d8b0e961c9d3bb1fe133099767bbd5080cea21b2bdc2a0a1b4581b2e",
-                "sha256:c6ced3ad48a1d07b586316c6a9449f44c150db5b83c43aa69706527c9eb71395"
+                "sha256:1c943f94bb759c07445a6984a3bc4c76f73e2a90a1fc2c3521c211579b73d3db",
+                "sha256:6818f4227ab4bce807727903c4b47cee02c15fd4811ab707be9f9eeaf30beaac"
             ],
-            "version": "==20.4.1"
+            "version": "==20.4.2"
         },
         "automat": {
             "hashes": [
