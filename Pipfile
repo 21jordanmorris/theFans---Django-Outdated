@@ -16,6 +16,7 @@ mlxtend = "*"
 nba-api = "*"
 channels-redis = "*"
 pypiwin32 = "*"
+django-redis-cache = "*"
 
 [requires]
 python_version = "3.7"
