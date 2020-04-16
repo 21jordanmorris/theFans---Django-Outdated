@@ -36,7 +36,7 @@ body {
     color: #0A25BD;
 }
 
-@media (max-width: 675px) 
+@media (max-width: 685px) 
 {
     .nav-bar {
         margin-top: 2rem;

@@ -71,3 +71,16 @@
         justify-content: center;
     }
 }
+
+@media (max-width: 685px) {
+    .nav-fixed {
+    }
+    
+    .nav-fixed ul {
+        display: none;
+    }
+
+    .article-container {
+        margin-top: 95px;
+    }
+}
