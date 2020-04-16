@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    'bootstrap4',
     'channels',
+    'crispy_forms',
 
     'nba_games',
     'pages',
@@ -65,7 +67,7 @@ ROOT_URLCONF = 'twentyfourseconds.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [(os.path.join(BASE_DIR, 'templates')), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,9 +87,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379),
-                      ('ec2-34-205-57-219.compute-1.amazonaws.com', 19219),
-                      os.environ.get('REDIS_URL')]
+            "hosts": [('127.0.0.1', 6379),]
         },
     },
 }
@@ -157,6 +157,9 @@ STATICFILE_DIRS = [
     os.path.join(BASE_DIR, 'chat/static'),
 ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+BOOTSTRAP4 = { 'include_jquery': True }
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'

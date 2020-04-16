@@ -58,7 +58,7 @@ def convert_team_name(team):
         'MIN' : 'minnesota-timberwolves', 
         'NOP' : 'new-orleans-pelicans', 
         'NYK' : 'new-york-knicks', 
-        'OKC' : 'oklahome-city-thunder', 
+        'OKC' : 'oklahoma-city-thunder', 
         'ORL' : 'orlando-magic', 
         'PHI' : 'philadelphia-76ers', 
         'PHO' : 'phoenix-suns', 
@@ -73,7 +73,4 @@ def convert_team_name(team):
 
 def is_east_team(team):
     east = ['ATL', 'BRK', 'BOS', 'CHO', 'CHI', 'CLE', 'DET', 'IND', 'MIA', 'MIL', 'NYK', 'ORL', 'PHI', 'TOR', 'WAS']
-    if team in east:
-        return True
-    else:
-        return False
+    return (team in east)

@@ -1,0 +1,49 @@
+body {
+    margin: 2rem;
+    margin-top: 4.5rem;
+    color: white;
+    background-color: #100e17;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.arrow {
+    color: white;
+    position: absolute;
+    margin-left: 1rem;
+    margin-top: -1em;
+    font-size: 42px;
+}
+
+.arrow:hover {
+    color: rgb(10, 37, 189);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+form {
+    width: 50vw;
+}
+
+.btn {
+    background-color: #0A25BD;
+    border-color: #0A25BD;
+}
+
+.btn:hover, .btn:active, .btn:focus {
+    background-color: rgb(3, 29, 175);
+    border-color: rgb(3, 29, 175);
+    box-shadow: none;
+}
+
+.btn-success, .btn-success:active, .btn-success:focus, .btn-success:hover {
+    color: #ffffff !important; 
+    background-color: rgb(3, 29, 175) !important; 
+    border-color: rgb(3, 29, 175) !important;
+    box-shadow: none !important;
+}

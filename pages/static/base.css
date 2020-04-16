@@ -4,7 +4,7 @@ body {
 }
 
 .nav-bar {
-    margin: 0px 20px 0px 20px;
+    margin: 0px 2rem 0px 2rem;
 }
 
 .nav-left {
@@ -18,7 +18,7 @@ body {
     padding: 1rem;
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(5, auto);
+    grid-template-columns: repeat(4, auto);
     justify-content: right;
     text-align: center;
 }
@@ -36,6 +36,22 @@ body {
     color: #0A25BD;
 }
 
-@media (max-width: 600px) {
-    /*Work on this*/
+@media (max-width: 675px) 
+{
+    .nav-bar {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .nav-left {
+        position: relative;
+        text-align: center;
+        font-size: .75em;
+        color: white;
+    }
+
+    .nav-bar ul {
+        grid-template-columns: repeat(4, auto);
+        justify-content: center;
+    }
 }

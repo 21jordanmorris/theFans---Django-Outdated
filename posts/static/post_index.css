@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+.nav-fixed {
+  margin-top: 1rem;
+}
+
 .pagination {
   margin: 0px 20px 0px 20px;
   color: #fff;
@@ -11,6 +15,10 @@
 a {
   color: white;
   text-decoration: none;
+}
+
+.site-title {
+  cursor: pointer;
 }
 
 .blog-card {

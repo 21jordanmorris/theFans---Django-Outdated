@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 
 {% load static %}
 
@@ -13,16 +12,16 @@
 </head>
 
 <div class="container"/>
-    {% if messages %}
+    {% comment %} {% if messages %}
         {% for message in messages %}
             {{ message }}
         {% endfor %}
-    {% endif %}
+    {% endif %} {% endcomment %}
 
     <div class="nav-fixed">
         <nav class="nav-bar">
             <div class="nav-left">
-                <h1 onclick="window.location.href='/'">twentyfourseconds</h1>
+                <h1 class="site-title" onclick="window.location.href='/'">twentyfourseconds</h1>
             </div>
             <ul class="nav-links nav-right">
                 {% if request.user.is_staff or request.user.is_superuser %}
