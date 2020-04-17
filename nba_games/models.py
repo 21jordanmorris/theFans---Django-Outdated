@@ -61,10 +61,11 @@ class Game(models.Model):
 class Message(models.Model):
     author = models.ForeignKey(get_user_model(), related_name="author_messages", on_delete=models.CASCADE)
     content = models.TextField()
+    channel = models.CharField(max_length=225, blank=False, null=False)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.author.username
+        return self.author.username + ": " + self.content
     
     def last_30_messages():
         return Message.objects.order_by('-timestamp').all()[:30]

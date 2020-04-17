@@ -20,9 +20,11 @@
         {% endfor %}
     </div>
 
+    <!-- CHANGE BACK AFTER TESTING -->
+
     <div class="container">
-        {% for game in object_list %}
-            {% if game.is_today %}
+        {% for game in object_list|slice:":8" %}
+            {% comment %} {% if game.is_today %} {% endcomment %}
                 <a href={% url 'game_detail' game.slug %}>
                 <div class="card">
                     <h3 class="title home">{{game.home_team}}</h3>
@@ -45,11 +47,11 @@
                     </div>
                 </div>
                 </a>
-            {% endif %}
+            {% comment %} {% endif %} {% endcomment %}
         {% endfor %}
     </div>
 
-    {% for game in object_list|slice:":1" %}
+    {% comment %} {% for game in object_list|slice:":1" %}
         <h3 style="text-align: center; color: white;">{{ game.get_tomorrow }}</h3>
     {% endfor %}
 
@@ -110,5 +112,5 @@
                 </div>
             {% endif %}
         {% endfor %}
-    </div>
+    </div> {% endcomment %}
 </body>

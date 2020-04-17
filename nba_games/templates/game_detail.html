@@ -14,27 +14,36 @@
         <a  href="{% url 'games' %}"><i class="arrow far fa-arrow-alt-circle-left"></i></a>
     </div>
 
-    <h1>{{ home_team }} vs. {{ visitor_team }}</h1>
+    <h1>{{ instance.home_team }} vs. {{ instance.visitor_team }}</h1>
 </div>
 
 <div class="body-container">
-    <div class="chat-box">
-        <textarea id="chat-log" cols="100" rows="20"></textarea><br>
-        <input id="chat-message-input" type="text" size="91">
-        <input id="chat-message-submit" type="button" value="Send">
+    <div class="chat">
+        <div class="chat-box">
+            <div id="messages">
+                {% for msg in message_queryset %}
+                    <p class="idv-message"><span class="msg-meta">{{ msg.author }}  <span class="time">  {{ msg.timestamp }}</span></span></br>{{ msg.content }}</p>
+                {% endfor %}
+            </div>
 
-        {{ room_name|json_script:"room-name" }}
+            {{ room_name|json_script:"room-name" }}
 
-        <p id="user" style="display:none;">{{ user.username }}</p>
+            <p id="user" style="display:none;">{{ user.username }}</p>
+        </div>
+
+        <div class="input-boxes">
+            <input id="chat-message-input" type="text" placeholder="Join the discussion"/>
+            <button id="chat-message-submit" type="button"><i class="fas fa-arrow-right"></i></button>
+        </div>
     </div>
 
     <div class="right-side-container">
         <div class="right-side">
             <div class="card">
-                <h3 class="title home">{{ home_team }}</h3>
-                <h3 class="title visitor">{{ visitor_team }}</h3>
-                <h3 class="title home home-prob">{{ home_prob }}<span>%</span></h3>
-                <h3 class="title visitor visitor-prob">{{ visitor_prob }}<span>%</span></h3>
+                <h3 class="title home">{{ instance.home_team }}</h3>
+                <h3 class="title visitor">{{ instance.visitor_team }}</h3>
+                <h3 class="title home home-prob">{{ instance.home_probability }}<span>%</span></h3>
+                <h3 class="title visitor visitor-prob">{{ instance.visitor_probability }}<span>%</span></h3>
                 <div class="bar">
                     <div class="emptybar"></div>
                     <div class="filledbar"></div>
@@ -57,5 +66,5 @@
     </div>
 </div>
 
-<script src='{% static 'reconnecting-websocket.js'%}'></script>
+<script src='{% static 'reconnecting-websocket.js' %}'></script>
 <script src='{% static 'chat.js' %}'></script>

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.contrib.auth.decorators import login_required
-from .models import Game
+from .models import Game, Message
 
 class GamesView(generic.ListView):
     model = Game
@@ -10,6 +10,7 @@ class GamesView(generic.ListView):
 @login_required
 def game_detail(request, slug=None):
     instance = get_object_or_404(Game, slug=slug)
+    message_queryset = reversed(Message.objects.filter(channel=slug))
 
     if is_east_team(instance.home_team):
         home_user = "tboyle24_DFS"
@@ -23,10 +24,7 @@ def game_detail(request, slug=None):
 
     context = {
         "instance" : instance,
-        "home_team": instance.home_team,
-        "visitor_team": instance.visitor_team,
-        "home_prob": instance.home_probability,
-        "visitor_prob": instance.visitor_probability,
+        "message_queryset": message_queryset,
         "home_twitter": convert_team_name(instance.home_team),
         "visitor_twitter": convert_team_name(instance.visitor_team),
         "home_user": home_user,

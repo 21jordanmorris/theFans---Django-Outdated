@@ -1,6 +1,6 @@
 const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
-const chatSocket = new WebSocket(
+const chatSocket = new ReconnectingWebSocket(
     'ws://'
     + window.location.host
     + '/ws/games/'
@@ -8,9 +8,19 @@ const chatSocket = new WebSocket(
     + '/'
 );
 
+//<p class="idv-message"><span class="msg-meta">{{ msg.author }}  <span class="time">  {{ msg.timestamp }}</span></span></br>{{ msg.content }}</p>
+
 chatSocket.onmessage = function(e) {
     const data = JSON.parse(e.data);
-    document.querySelector('#chat-log').value += (data.message + '\n');
+    
+    var date = new Date();
+    var pMessage = document.createElement("p");
+    pMessage.className = "idv-message";
+
+    pMessage.innerHTML = '<span class="msg-meta">' + data.author + ' <span class="time">'+ date +'</span></span></br>' + data.message;
+
+    var element = document.getElementById("messages");
+    element.insertBefore(pMessage, element.childNodes[0]);
 };
 
 chatSocket.onclose = function(e) {
@@ -27,9 +37,11 @@ document.querySelector('#chat-message-input').onkeyup = function(e) {
 document.querySelector('#chat-message-submit').onclick = function(e) {
     const messageInputDom = document.querySelector('#chat-message-input');
     const username = document.querySelector('#user').innerHTML;
-    const message = username + ": " + messageInputDom.value;
+    const message = messageInputDom.value;
     chatSocket.send(JSON.stringify({
-        'message': message
+        'message': message,
+        'channel': roomName,
+        'username': username,
     }));
     messageInputDom.value = '';
 };
