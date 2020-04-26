@@ -4,8 +4,11 @@ document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 
 const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
+var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+
 const chatSocket = new ReconnectingWebSocket(
-    'ws://'
+    ws_scheme
+    + "://"
     + window.location.host
     + '/ws/games/'
     + roomName
@@ -26,14 +29,12 @@ chatSocket.onmessage = function(e) {
     var element = document.getElementById("messages");
     element.appendChild(pMessage);
     updateScrollChatBox();
-    //element.insertBefore(pMessage, element.childNodes[0]);
 };
 
 chatSocket.onclose = function(e) {
     console.error('Chat socket closed unexpectedly');
 };
 
-//document.querySelector('#chat-message-input').focus();
 document.querySelector('#chat-message-input').onkeyup = function(e) {
     if (e.keyCode === 13) {  // enter, return
         document.querySelector('#chat-message-submit').click();
