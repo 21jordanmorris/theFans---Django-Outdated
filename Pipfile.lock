@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "5a1e713bc1709546ddbfba3918b77b47f507ac7cc6da0239c1e3f674061f0cdf"
+            "sha256": "07b015b422c792133347bb9b32f7b0fc70ff9fd521d297d6ac327bae753691a7"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -203,6 +203,14 @@
             "index": "pypi",
             "version": "==1.1.1"
         },
+        "django-cleanup": {
+            "hashes": [
+                "sha256:412c3f9417ddaaaa561b60237b109550b16e556db92d4616278fc7e1ad9ab0a4",
+                "sha256:b2bdb590eccc1a8e0688d5c6224080d3bb4a77e5bad1688fbe452d8c3454d755"
+            ],
+            "index": "pypi",
+            "version": "==4.0.0"
+        },
         "django-crispy-forms": {
             "hashes": [
                 "sha256:50032184708ce351e3c9f0008ac35d659d9d5973fa2db218066f2e0a76eb41d9",
@@ -210,6 +218,14 @@
             ],
             "index": "pypi",
             "version": "==1.9.0"
+        },
+        "django-pagedown": {
+            "hashes": [
+                "sha256:2558c14167baf05bb5205dccd880d1efc62b3a16530d98b165dc85fc26692eb1",
+                "sha256:83b30134131a49358196f8c2f0e2e25d730ee7a820482a7fda5ef386c22b1d6c"
+            ],
+            "index": "pypi",
+            "version": "==2.0.3"
         },
         "django-redis-cache": {
             "hashes": [
@@ -351,6 +367,21 @@
                 "sha256:f6ed60a62c5f1c44e789d2cf14009423cb1646b44a43e40a9cf6a21f077678a1"
             ],
             "version": "==4.4.2"
+        },
+        "markdown": {
+            "hashes": [
+                "sha256:90fee683eeabe1a92e149f7ba74e5ccdc81cd397bd6c516d93a8da0ef90b6902",
+                "sha256:e4795399163109457d4c5af2183fbe6b60326c17cfdf25ce6e7474c6624f725d"
+            ],
+            "index": "pypi",
+            "version": "==3.2.1"
+        },
+        "martor": {
+            "hashes": [
+                "sha256:c54357225d6a3ba27b2c21c5bbe05bcee0863e30b5f04e29edc3976005be2632"
+            ],
+            "index": "pypi",
+            "version": "==1.4.9"
         },
         "matplotlib": {
             "hashes": [

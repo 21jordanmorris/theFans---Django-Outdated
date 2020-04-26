@@ -18,6 +18,10 @@ channels-redis = "*"
 django-redis-cache = "*"
 django-bootstrap4 = "*"
 django-crispy-forms = "*"
+django-cleanup = "*"
+django-pagedown = "*"
+markdown = "*"
+martor = "*"
 
 [requires]
 python_version = "3.7"

@@ -32,7 +32,7 @@
         <div class="description">
             <h1>{{ obj.title }}</h1>
             <h2>{{ obj.summary }}</h2>
-            <p>{{ obj.content|truncatechars:150}}</p>
+            <p class="content-markdown">{{ obj.content|truncatechars:150}}</p>
             <p class="read-more">
                 <a href="{{ obj.get_absolute_url }}">Read More</a>
             </p>

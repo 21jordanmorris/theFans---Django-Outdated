@@ -20,6 +20,7 @@ def post_create(request):
     context = {
         "form": form,
         "button_name": "Create",
+        "title": "Create Post",
     }
 
     return render(request, "post_form.html", context)
@@ -63,7 +64,7 @@ def post_update(request, slug=None):
         return HttpResponseRedirect(instance.get_absolute_url())
     
     context = {
-        "title": instance.title,
+        "title": "Edit Post",
         "instance": instance,
         "form": form,
         "button_name": "Update",

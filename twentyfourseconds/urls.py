@@ -9,6 +9,7 @@ urlpatterns = [
     path('games/', include('nba_games.urls')),
     path('', include('pages.urls')),
     path('posts/', include('posts.urls')),
+    path('martor/', include('martor.urls')),
 ]
 
 if settings.DEBUG:

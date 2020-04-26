@@ -24,7 +24,7 @@ def game_detail(request, slug=None):
 
     context = {
         "instance" : instance,
-        "message_queryset": message_queryset,
+        "message_queryset": reversed(list(message_queryset)),
         "home_twitter": convert_team_name(instance.home_team),
         "visitor_twitter": convert_team_name(instance.visitor_team),
         "home_user": home_user,

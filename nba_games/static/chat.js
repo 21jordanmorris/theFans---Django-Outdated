@@ -1,3 +1,7 @@
+updateScrollChatBox();
+document.body.scrollTop = 0; // For Safari
+document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
 const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
 const chatSocket = new ReconnectingWebSocket(
@@ -20,14 +24,16 @@ chatSocket.onmessage = function(e) {
     pMessage.innerHTML = '<span class="msg-meta">' + data.author + ' <span class="time">'+ date +'</span></span></br>' + data.message;
 
     var element = document.getElementById("messages");
-    element.insertBefore(pMessage, element.childNodes[0]);
+    element.appendChild(pMessage);
+    updateScrollChatBox();
+    //element.insertBefore(pMessage, element.childNodes[0]);
 };
 
 chatSocket.onclose = function(e) {
     console.error('Chat socket closed unexpectedly');
 };
 
-document.querySelector('#chat-message-input').focus();
+//document.querySelector('#chat-message-input').focus();
 document.querySelector('#chat-message-input').onkeyup = function(e) {
     if (e.keyCode === 13) {  // enter, return
         document.querySelector('#chat-message-submit').click();
@@ -45,3 +51,8 @@ document.querySelector('#chat-message-submit').onclick = function(e) {
     }));
     messageInputDom.value = '';
 };
+
+function updateScrollChatBox() {
+    var element = document.querySelector('.chat-box');
+    element.scrollTop = element.scrollHeight;
+}

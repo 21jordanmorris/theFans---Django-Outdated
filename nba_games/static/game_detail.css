@@ -72,12 +72,15 @@
     align-self: flex-start;
     margin-bottom: 1rem;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 #chat-message-input {
     border-radius: 15px;
     padding: .5rem;
     padding-left: 1rem;
+    margin-right: 1%;
 
 }
 
@@ -95,12 +98,21 @@
     grid-template-columns: 90% 10%;
 }
 
+#chat-message-input:focus, #chat-message-submit:focus {
+    outline: none;
+}
+
 .idv-message {
     font-size: 1rem;
     background-color: rgb(223, 223, 223);
     border-radius: 5px;
     padding: 1rem;
     word-wrap: break-word;
+}
+
+#messages {
+    flex-grow: 1;
+    width: 100%;
 }
 
 .time {

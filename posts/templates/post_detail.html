@@ -19,21 +19,21 @@
 
         <p>By: {{ instance.author }}</p>
 
-        <p>Written: {{ instance.timestamp }}, Last Updated: {{ instance.updated }}</p><br/><br/>
+        <p>Updated: {{ instance.updated }}</p><br/>
 
         {% if instance.image %}
             <img class="header-img" src='{{ instance.image.url }}'/>
         {% endif %}
 
         <div class="article-contents">
-            <p>{{ instance.content }}</p><br/><br/>
+            <p class="content-markdown">{{ instance.content|safe }}</p>
         </div>
         
     </div>
 
     <div class="article-links">
         {% if request.user.is_staff or request.user.is_superuser %}
-            <a href="{% url 'update' instance.slug %}">Update</a>
+            <a href="{% url 'update' instance.slug %}">Edit</a>
             <a href="{% url 'delete' instance.slug %}">Delete</a>
         {% endif %}
     </div>
