@@ -22,8 +22,8 @@ django-cleanup = "*"
 django-pagedown = "*"
 markdown = "*"
 martor = "*"
-asgi-redis = "*"
 django-heroku = "*"
+asgiref = "*"
 
 [requires]
 python_version = "3.7"
