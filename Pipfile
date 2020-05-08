@@ -23,6 +23,7 @@ django-pagedown = "*"
 markdown = "*"
 martor = "*"
 asgi-redis = "*"
+django-heroku = "*"
 
 [requires]
 python_version = "3.7"

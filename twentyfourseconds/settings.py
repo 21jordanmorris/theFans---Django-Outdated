@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import django_heroku
 from django.utils import timezone
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -228,3 +229,6 @@ MARTOR_MARKDOWN_BASE_EMOJI_URL = 'https://github.githubassets.com/images/icons/e
 MARTOR_MARKDOWN_BASE_MENTION_URL = 'https://twentyfourseconds.herokuapp.com/'                           # please change this to your domain
 
 CSRF_COOKIE_HTTPONLY = False
+
+# Heroku Stuff
+django_heroku.settings(locals())
