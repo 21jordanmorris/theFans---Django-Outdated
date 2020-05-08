@@ -159,6 +159,7 @@ STATICFILE_DIRS = [
     os.path.join(BASE_DIR, 'users/static'),
     os.path.join(BASE_DIR, 'posts/static'),
     os.path.join(BASE_DIR, 'chat/static'),
+    os.path.join(BASE_DIR, 'pages/static'),
 ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
