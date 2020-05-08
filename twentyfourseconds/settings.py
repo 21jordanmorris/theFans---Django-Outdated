@@ -153,14 +153,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')      
-STATICFILE_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'nba_games/static'),
-    os.path.join(BASE_DIR, 'users/static'),
-    os.path.join(BASE_DIR, 'posts/static'),
-    os.path.join(BASE_DIR, 'chat/static'),
-    os.path.join(BASE_DIR, 'pages/static'),
-]
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 BOOTSTRAP4 = { 'include_jquery': True }
