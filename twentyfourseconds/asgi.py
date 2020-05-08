@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/3.0/howto/deployment/asgi/
 
 import os
 import django
-from whitenoise.django import DjangoWhiteNoise
 from channels.routing import get_default_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'twentyfourseconds.settings')
@@ -17,4 +16,3 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'twentyfourseconds.settings')
 django.setup()
 
 application = get_default_application()
-application = DjangoWhiteNoise(application)
