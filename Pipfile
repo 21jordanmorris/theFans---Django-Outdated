@@ -24,6 +24,8 @@ markdown = "*"
 martor = "*"
 django-heroku = "*"
 asgiref = "*"
+boto3 = "*"
+django-storages = "*"
 
 [requires]
 python_version = "3.7"

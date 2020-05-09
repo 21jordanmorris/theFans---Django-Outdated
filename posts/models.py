@@ -5,8 +5,9 @@ from django.db.models.signals import pre_save
 from django.utils.text import slugify
 import os
 
+# Change
 def upload_location(instance, filename):
-    return os.path.join('%s' % instance.pk, filename)
+    return os.path.join('%s' % instance.slug, filename)
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
