@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.contrib.auth.decorators import login_required
+
 from .models import Game, Message
+from django.apps import apps
 
 class GamesView(generic.ListView):
     model = Game
@@ -22,6 +24,9 @@ def game_detail(request, slug=None):
     else:
         visitor_user = "gstroms99"
 
+    PostModel = apps.get_model('posts', 'Post')
+    posts = PostModel.objects.filter(title__contains=instance.home_team)
+
     context = {
         "instance" : instance,
         "message_queryset": reversed(list(message_queryset)),
@@ -30,6 +35,7 @@ def game_detail(request, slug=None):
         "home_user": home_user,
         "visitor_user": visitor_user,
         "room_name": slug,
+        "posts": posts,
     }
     return render(request, "game_detail.html", context)
 

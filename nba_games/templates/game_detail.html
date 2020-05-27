@@ -35,6 +35,32 @@
             <input id="chat-message-input" type="text" placeholder="Join the discussion"/>
             <button id="chat-message-submit" type="button"><i class="fas fa-arrow-right"></i></button>
         </div>
+
+        <div class="posts">
+            <h2>Related Posts</h2>
+            {% for post in posts %}
+                <div class="blog-card">
+                    <div class="meta">
+                        {% if post.image %}
+                            <div class="photo" style="background-image: url({{ post.image.url }})"></div>
+                            <img src='{{ post.image.url }}' width="200" height="150"/><br/> 
+                        {% endif %}
+                        <ul class="details">
+                            <li class="author"><a href="#">Written by: {{ post.author }}</a></li>
+                            <li class="date">{{ post.timestamp }}</li>
+                        </ul>
+                    </div>
+                    <div class="description">
+                        <h1>{{ post.title }}</h1>
+                        <h2>{{ post.summary }}</h2>
+                        <p class="content-markdown">{{ post.content|truncatechars:150}}</p>
+                        <p class="read-more">
+                            <a href="{{ post.get_absolute_url }}">Read More</a>
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 
     <div class="right-side-container">
@@ -49,12 +75,12 @@
                     <div class="filledbar"></div>
                 </div>
                 <div class="circle circle-top">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg">   
+                    <svg version="1.1" xmlns="https://www.w3.org/2000/svg">   
                         <circle class="stroke" cx="60" cy="60" r="58"  stroke-dasharray="364.42" stroke-dashoffset="{{ instance.get_home_prob_for_circle }}"/>
                     </svg>
                 </div>
                 <div class="circle circle-bottom">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg">   
+                    <svg version="1.1" xmlns="https://www.w3.org/2000/svg">   
                         <circle class="inner-stroke" cx="60" cy="60" r="58"  stroke-dasharray="364.42" stroke-dashoffset="{{ instance.get_visitor_prob_for_circle }}"/>
                     </svg>
                 </div>

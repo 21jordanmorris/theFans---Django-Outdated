@@ -195,7 +195,7 @@
          * This will prevent the error:
          * Object doesn't support this action
          *
-         * http://stackoverflow.com/questions/19345392/why-arent-my-parameters-getting-passed-through-to-a-dispatched-event/19345563#19345563
+         * https://stackoverflow.com/questions/19345392/why-arent-my-parameters-getting-passed-through-to-a-dispatched-event/19345563#19345563
          * @param s String The name that the event should use
          * @param args Object an optional object that the event will use
          */
