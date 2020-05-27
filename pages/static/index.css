@@ -1,6 +1,6 @@
 .blog-card {
     margin: 1rem auto;
-    margin-right: 3rem;
+    /* margin-right: 3rem; */
     text-align: left;
 }
 
@@ -38,7 +38,6 @@
     text-decoration: none;
     display: inline-block;
     margin-top: 1rem;
-    margin-left: -1rem;
 }
 
 @media (max-width: 1032px)
@@ -48,7 +47,7 @@
     }
 }
 
-@media (max-width: 983px)
+@media (max-width: 80000px)
 {
     .game-container {
         display: none;

@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '^bk&o%t+p^z6@n3%#n7e_z5u6+k3^1xx)g&7f9%va7emb+7%ew'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', 'twentyfourseconds.herokuapp.com']
 
@@ -152,6 +152,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 if not DEBUG:
     AWS_LOCATION = 'static'
@@ -164,9 +165,6 @@ if not DEBUG:
     }
     DEFAULT_FILE_STORAGE = 'twentyfourseconds.storage_backends.MediaStorage'
     STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'staticfiles'),
-    ] 
     STATIC_URL='https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
     ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
     STATICFILES_FINDERS = (           
@@ -176,7 +174,6 @@ if not DEBUG:
     AWS_DEFAULT_ACL = None
 else:
     STATIC_URL = '/static/'
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     MEDIA_URL = "/media/"
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

@@ -8,7 +8,9 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = [
             "title",
+            "writer",
             "summary",
             "content",
+            "sport",
             "image",
         ]

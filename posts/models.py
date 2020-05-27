@@ -14,6 +14,7 @@ class Post(models.Model):
     summary = models.CharField(max_length=255, default="")
     slug = models.SlugField(unique=True)
     author = models.ForeignKey(get_user_model(), on_delete=models.PROTECT)
+    writer = models.CharField(max_length=255, default="")
     content = models.TextField()
     image = models.ImageField(upload_to=upload_location,
         null=True, blank=True, 
@@ -21,6 +22,14 @@ class Post(models.Model):
         height_field="height_field")
     height_field = models.IntegerField(default=0)
     width_field = models.IntegerField(default=0)
+
+    SPORT_CHOICES = (
+        ("NBA", "NBA"),
+        ("CFB", "CFB"),
+        ("NFL", "NFL"),
+    )
+
+    sport = models.CharField(max_length=25, choices=SPORT_CHOICES, default="Null")
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
