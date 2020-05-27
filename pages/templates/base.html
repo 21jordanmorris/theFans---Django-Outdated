@@ -34,4 +34,13 @@
     {% block content %}
     {% endblock content %}
 </body>
+
+<script type="text/javascript">
+    var alerted = localStorage.getItem('alerted') || '';
+    if (alerted != 'yes') {
+        alert("Due to most sports leagues being cancelled, our game prediction feature has been removed until leagues resume.");
+        localStorage.setItem('alerted','yes');
+    }
+</script>
+
 </html>
