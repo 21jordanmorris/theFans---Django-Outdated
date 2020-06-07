@@ -8,7 +8,7 @@
     {% block stylesheets %}
     {% endblock stylesheets %}
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-    <title>twentyfourseconds</title>
+    <title>theFans</title>
 </head>
 
 <div class="container"/>
@@ -21,7 +21,7 @@
     <div class="nav-fixed">
         <nav class="nav-bar">
             <div class="nav-left">
-                <h1 class="site-title" onclick="window.location.href='/'">twentyfourseconds</h1>
+                <h1 class="site-title" onclick="window.location.href='/'">theFans</h1>
             </div>
             <ul class="nav-links nav-right">
                 {% if request.user.is_staff or request.user.is_superuser %}
@@ -29,7 +29,7 @@
                 {% endif %}
                 {% block links %}
                 {% endblock links%}
-                <li><a href="{% url 'games' %}">Games</a></li>
+                <!--<li><a href="{% url 'games' %}">Games</a></li>-->
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'update_user' user.slug %}">{{ user.username }}</a></li>
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
