@@ -27,6 +27,10 @@ def post_create(request):
 
 def post_detail(request, slug=None):
     instance = get_object_or_404(Post, slug=slug)
+    
+    instance.views = instance.views + 1
+    instance.save()
+    
     context = {
         "title": instance.title,
         "instance": instance,

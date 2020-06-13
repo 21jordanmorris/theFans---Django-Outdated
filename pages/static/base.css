@@ -55,6 +55,12 @@ body:after{
     color: #0A25BD;
 }
 
+.footer {
+    color: white;
+    text-align: right;
+    margin: 2rem 1rem .5rem .5rem;
+}
+
 @media (max-width: 685px) 
 {
     .nav-bar {

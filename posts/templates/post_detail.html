@@ -28,11 +28,11 @@
         <div class="article-contents">
             <p class="content-markdown">{{ instance.content|safe }}</p>
         </div>
-        
     </div>
 
     <div class="article-links">
         {% if request.user.is_staff or request.user.is_superuser %}
+            <br/><p>Views: {{ instance.views }}</p>
             <a href="{% url 'update' instance.slug %}">Edit</a>
             <a href="{% url 'delete' instance.slug %}">Delete</a>
         {% endif %}

@@ -16,6 +16,7 @@ class Post(models.Model):
     author = models.ForeignKey(get_user_model(), on_delete=models.PROTECT)
     writer = models.CharField(max_length=255, default="")
     content = models.TextField()
+    views = models.IntegerField(default=0)
     image = models.ImageField(upload_to=upload_location,
         null=True, blank=True, 
         width_field="width_field", 
