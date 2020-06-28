@@ -21,7 +21,7 @@
         </div>
         <ul class="nav-links nav-right">
             <li><a href="{% url 'post_list' %}">Posts</a></li>
-            <li><a href="{% url 'games' %}">Games</a></li>
+            <li><a href="{% url 'games' %}">NBA Games</a></li>
             {% if user.is_authenticated %}
                 <li><a href="{% url 'update_user' user.slug %}">{{ user.username }}</a></li>
                 <li><a href="{% url 'logout' %}">Log Out</a></li>
