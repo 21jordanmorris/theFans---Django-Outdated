@@ -36,6 +36,7 @@ def game_detail(request, slug=None):
         "visitor_user": visitor_user,
         "room_name": slug,
         "posts": posts,
+        "current_day": "2020-07-30",
     }
     return render(request, "game_detail.html", context)
 

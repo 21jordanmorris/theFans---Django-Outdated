@@ -35,32 +35,6 @@
             <input id="chat-message-input" type="text" placeholder="Join the discussion"/>
             <button id="chat-message-submit" type="button"><i class="fas fa-arrow-right"></i></button>
         </div>
-
-        <div class="posts">
-            <h2>Related Posts</h2>
-            {% for post in posts %}
-                <div class="blog-card">
-                    <div class="meta">
-                        {% if post.image %}
-                            <div class="photo" style="background-image: url({{ post.image.url }})"></div>
-                            <img src='{{ post.image.url }}' width="200" height="150"/><br/> 
-                        {% endif %}
-                        <ul class="details">
-                            <li class="author"><a href="#">Written by: {{ post.author }}</a></li>
-                            <li class="date">{{ post.timestamp }}</li>
-                        </ul>
-                    </div>
-                    <div class="description">
-                        <h1>{{ post.title }}</h1>
-                        <h2>{{ post.summary }}</h2>
-                        <p class="content-markdown">{{ post.content|truncatechars:150}}</p>
-                        <p class="read-more">
-                            <a href="{{ post.get_absolute_url }}">Read More</a>
-                        </p>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
     </div>
 
     <div class="right-side-container">
@@ -91,10 +65,6 @@
         </div>
     </div>
 </div>
-
-<footer class="footer" style="text-align: right;color: white;margin: 2rem 1rem .5rem .5rem;"> 
-    <small>&copy; Copyright 2020, Jordan Morris</small> 
-</footer>
 
 <script src='{% static 'reconnecting-websocket.js' %}'></script>
 <script src='{% static 'chat.js' %}'></script>

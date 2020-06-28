@@ -6,6 +6,7 @@ from utils import *
 import sys
 import pandas as pd
 import numpy as np
+import datetime
 pd.options.mode.chained_assignment = None
 
 # TODO: 
@@ -63,6 +64,37 @@ def convert_team_names(entire_schedule):
                 entire_schedule.at[row, 'VISITOR'] = team_abbreviations[team_abbreviations_keys[i]]
         row += 1
     
+    a = datetime.datetime(2020, 7, 30)
+    b = datetime.datetime(2020, 7, 31)
+    c = datetime.datetime(2020, 8, 1)
+    d = datetime.datetime(2020, 8, 2)
+    e = datetime.datetime(2020, 8, 3)
+    f = datetime.datetime(2020, 8, 4)
+    g = datetime.datetime(2020, 8, 5)
+    h = datetime.datetime(2020, 8, 6)
+    i = datetime.datetime(2020, 8, 7)
+    j = datetime.datetime(2020, 8, 8)
+    k = datetime.datetime(2020, 8, 9)
+    l = datetime.datetime(2020, 8, 10)
+    m = datetime.datetime(2020, 8, 11)
+    n = datetime.datetime(2020, 8, 12)
+    o = datetime.datetime(2020, 8, 13)
+    p = datetime.datetime(2020, 8, 14)
+
+    date = [a,a,b,b,b,b,b,b,c,c,c,c,c,d,d,d,d,d,d,e,e,e,e,e,e,f,f,f,f,f,f,g,g,g,g,g,g,h,h,h,h,h,h,i,i,i,i,i,i,j,j,j,j,j,k,k,k,k,k,k,k,l,l,l,l,l,m,m,m,m,m,m,m,n,n,n,n,o,o,o,o,o,o,o,p,p,p,p]
+    #date = ['7/30/2020', '7/30/2020', '7/31/2020', '7/31/2020', '7/31/2020', '7/31/2020', '7/31/2020', '7/31/2020', '8/1/2020', '8/1/2020', '8/1/2020', '8/1/2020', '8/1/2020', '8/2/2020', '8/2/2020', '8/2/2020', '8/2/2020', '8/2/2020', '8/2/2020', '8/3/2020', '8/3/2020', '8/3/2020', '8/3/2020', '8/3/2020', '8/3/2020', '8/4/2020', '8/4/2020', '8/4/2020', '8/4/2020', '8/4/2020', '8/4/2020', '8/5/2020', '8/5/2020', '8/5/2020', '8/5/2020', '8/5/2020', '8/5/2020', '8/6/2020', '8/6/2020', '8/6/2020', '8/6/2020', '8/6/2020', '8/6/2020', '8/7/2020', '8/7/2020', '8/7/2020', '8/7/2020', '8/7/2020', '8/7/2020', '8/8/2020', '8/8/2020', '8/8/2020', '8/8/2020', '8/8/2020',
+    #                            '8/9/2020', '8/9/2020', '8/9/2020', '8/9/2020', '8/9/2020', '8/9/2020', '8/9/2020', '8/10/2020', '8/10/2020', '8/10/2020', '8/10/2020', '8/10/2020', '8/11/2020', '8/11/2020', '8/11/2020', '8/11/2020', '8/11/2020', '8/11/2020', '8/11/2020', '8/12/2020', '8/12/2020', '8/12/2020', '8/12/2020', '8/13/2020', '8/13/2020', '8/13/2020', '8/13/2020', '8/13/2020', '8/13/2020', '8/13/2020', '8/14/2020', '8/14/2020', '8/14/2020', '8/14/2020']
+    
+    empty = [" "] * len(date)
+
+    df1 = pd.DataFrame({'VISITOR' : ['UTA', 'LAC', 'ORL', 'MEM', 'PHO', 'BOS', 'SAC', 'HOU', 'MIA', 'UTA', 'NOP', 'PHI', 'LAL', 'WAS', 'POR', 'SAS', 'SAC', 'MIL', 'DAL', 'TOR', 'DEN', 'IND', 'MEM', 'SAS', 'LAL', 'BRK', 'DAL', 'PHO', 'ORL', 'BOS', 'HOU', 'MEM', 'PHI', 'DEN', 'OKC', 'TOR', 'BRK', 'NOP', 'MIA', 'IND', 'LAC', 'POR', 'LAL', 'UTA', 'OKC', 'SAC', 'ORL', 'WAS', 'BOS', 'LAC', 'UTA', 'LAL', 'PHO', 'MIL', 'WAS', 'MEM', 'SAS', 'ORL', 'PHI', 'HOU', 'BRK', 'OKC', 'DAL', 'TOR', 'IND', 'DEN', 'BRK', 'HOU', 'PHO', 'POR', 'BOS', 'NOP', 'MIL', 'IND', 'TOR', 'MIA', 'LAC', 'WAS', 'POR', 'SAC', 'MIL', 'NOP', 'DAL', 'SAS', 'PHI', 'MIA', 'OKC', 'DEN'],
+                       'VISITOR_PTS': empty,
+                       'HOME' : ['NOP', 'LAL', 'BRK', 'POR', 'WAS', 'MIL', 'SAS', 'DAL', 'DEN', 'OKC', 'LAC', 'IND', 'TOR', 'BRK', 'BOS', 'MEM', 'ORL', 'HOU', 'PHO', 'MIA', 'OKC', 'WAS', 'NOP', 'PHI', 'UTA', 'MIL', 'SAC', 'LAC', 'IND', 'MIA', 'POR', 'UTA', 'WAS', 'SAS', 'LAL', 'ORL', 'BOS', 'SAC', 'MIL', 'PHO', 'DAL', 'DEN', 'HOU', 'SAS', 'MEM', 'BRK', 'PHI', 'NOP', 'TOR', 'POR', 'DEN', 'IND', 'MIA', 'DAL', 'OKC', 'TOR', 'NOP', 'BOS', 'POR', 'SAC', 'LAC', 'PHO', 'UTA', 'MIL', 'MIA', 'LAL', 'ORL', 'SAS', 'PHI', 'DAL', 'MEM', 'SAC', 'WAS', 'HOU', 'PHI', 'OKC', 'DEN', 'BOS', 'BRK', 'LAL', 'MEM', 'ORL', 'PHO', 'UTA', 'HOU', 'IND', 'LAC', 'TOR'],
+                       'HOME_PTS': empty,
+                       'DATE' : date})
+
+    entire_schedule = pd.concat([entire_schedule, df1], sort=False)
+
     return entire_schedule
 
 def add_winner_column(entire_schedule):
@@ -294,7 +326,7 @@ def add_last_twenty(entire_schedule):
 
 def finalize_csv(name, year):
     entire_schedule = get_schedule(year, playoffs=False)
-    convert_team_names(entire_schedule)
+    entire_schedule = convert_team_names(entire_schedule)
     add_winner_column(entire_schedule)
     entire_schedule = add_win_percentage(add_team_stats(entire_schedule))
     entire_schedule = add_second_of_b2b(entire_schedule)

@@ -23,7 +23,10 @@ class Game(models.Model):
     def get_absolute_url(self):
         return reverse("game_detail", kwargs={"slug": self.slug})
     
-    
+    @property
+    def is_future(self):
+        return self.date >= date.today()
+
     @property
     def is_today(self):
         return date.today() == self.date

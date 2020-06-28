@@ -29,7 +29,7 @@
                 {% endif %}
                 {% block links %}
                 {% endblock links%}
-                <!--<li><a href="{% url 'games' %}">Games</a></li>-->
+                <li><a href="{% url 'games' %}">Games</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'update_user' user.slug %}">{{ user.username }}</a></li>
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
@@ -43,10 +43,6 @@
     {% block content %}
     {% endblock content %} 
 </div>
-
-<footer class="footer"> 
-    <small>&copy; Copyright 2020, Jordan Morris</small> 
-</footer>
 
 <script
   src="https://code.jquery.com/jquery-3.5.0.min.js"

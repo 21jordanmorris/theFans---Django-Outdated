@@ -18,7 +18,7 @@ cols = ['DATE', 'HOME', 'VISITOR', 'VISITOR_PTS', 'HOME_PTS', 'WINNER', 'HOME_GA
 
 df_2018 = pd.read_csv("season_2018.csv")
 df_2019 = pd.read_csv("season_2019.csv")
-df_2020 = pd.read_csv(finalize_csv('season_2020.csv', 2020))
+df_2020 = pd.read_csv('season_2020.csv')
 df = pd.concat([df_2018, df_2019], ignore_index=True)
 
 columns = ['HOME_NRtg', 'HOME_DRB%', 'HOME_SRS', 'VISITOR_NRtg', 'HOME_B2B', 'VISITOR_B2B', 
@@ -58,7 +58,7 @@ average = pd.DataFrame(average, columns=[['VISITOR_WIN_PROB', 'HOME_WIN_PROB']])
 sys.stderr.write("[PROGRESS] 1/50 runs completed.\n")
 sys.stderr.flush()
 
-for n in range(0, 49):
+for n in range(0, 2):
     nth_run = SVMModel(False)
     nth_run = pd.DataFrame(nth_run, columns=[['VISITOR_WIN_PROB', 'HOME_WIN_PROB']])
     average = average.add(nth_run).div(2)
@@ -83,7 +83,7 @@ with open(CSV_PATH, newline='') as csvfile:
             str_slug = row[3] + "-" + row[1] + "-" + str(row[0]).replace('-', '')
             slug = slugify(str_slug)
            
-            if row[2] == '':
+            if row[2] == '' or row[2] == " ":
                 try:
                     # Updates games that have not been played yet.
                     game = Game.objects.get(date=row[0], visitor_team=row[1], home_team=row[3])
@@ -92,8 +92,8 @@ with open(CSV_PATH, newline='') as csvfile:
                     game.save()
                 except Game.DoesNotExist:
                     Game.objects.create(date=row[0], visitor_team=row[1], home_team=row[3], visitor_probability=round(float(row[total_cols-2]) * 100, 2), home_probability=round(float(row[total_cols-1]) * 100, 2), slug=slug)
-                except:
-                    print("[ERROR] Unexpected error occured when attempting to update database.")
+                except Exception as e:
+                    print("[ERROR] " + str(e))
             else:
                 try:
                     # Updates the scores of games that have been played (from yesterday)
@@ -105,5 +105,5 @@ with open(CSV_PATH, newline='') as csvfile:
                 except Game.DoesNotExist:
                     Game.objects.create(date=row[0], visitor_team=row[1], visitor_score=int(float(row[2])), home_team=row[3], home_score=int(float(row[4])),
                                 visitor_probability=round(float(row[total_cols-2]) * 100, 2), home_probability=round(float(row[total_cols-1]) * 100, 2), slug=slug)
-                except:
-                    print("[ERROR] Unexpected error occured when attempting to update database.")
+                except Exception as e:
+                    print("[ERROR] " + str(e))

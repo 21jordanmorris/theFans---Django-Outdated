@@ -21,7 +21,7 @@
         </div>
         <ul class="nav-links nav-right">
             <li><a href="{% url 'post_list' %}">Posts</a></li>
-            {% comment %} <li><a href="{% url 'games' %}">Games</a></li> {% endcomment %}
+            <li><a href="{% url 'games' %}">Games</a></li>
             {% if user.is_authenticated %}
                 <li><a href="{% url 'update_user' user.slug %}">{{ user.username }}</a></li>
                 <li><a href="{% url 'logout' %}">Log Out</a></li>
@@ -34,17 +34,5 @@
     {% block content %}
     {% endblock content %}
 </body>
-
-<footer class="footer"> 
-    <small>&copy; Copyright 2020, Jordan Morris</small> 
-</footer>
-
-<script type="text/javascript">
-    var alerted = localStorage.getItem('alerted') || '';
-    if (alerted != 'yes') {
-        alert("Due to most sports leagues being cancelled, our game prediction feature has been removed until leagues resume.");
-        localStorage.setItem('alerted','yes');
-    }
-</script>
 
 </html>

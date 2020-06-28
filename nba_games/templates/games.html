@@ -15,16 +15,12 @@
         </div>
 
         <h1 style="text-align: center; margin-top: 2em; color: white;">NBA Game Prediction Probabilities</h1>
-        {% for game in object_list|slice:":1" %}
-            <h3 style="text-align: center; margin-top: 2em; color: white;">{{ game.get_today }}</h3>
-        {% endfor %}
+        <h3 style="text-align: center; margin-top: 2em; color: white;">2020 Seeding Schedule Predictions</h3>
     </div>
 
-    <!-- CHANGE BACK AFTER TESTING -->
-
     <div class="container">
-        {% for game in object_list|slice:":8" %}
-            {% comment %} {% if game.is_today %} {% endcomment %}
+        {% for game in object_list %}
+            {% if game.is_future %}
                 <a href={% url 'game_detail' game.slug %}>
                 <div class="card">
                     <h3 class="title home">{{game.home_team}}</h3>
@@ -47,7 +43,7 @@
                     </div>
                 </div>
                 </a>
-            {% comment %} {% endif %} {% endcomment %}
+            {% endif %}
         {% endfor %}
     </div>
 
@@ -114,7 +110,3 @@
         {% endfor %}
     </div> {% endcomment %}
 </body>
-
-<footer class="footer" style="text-align: right;color: white;margin: 2rem 1rem .5rem .5rem;"> 
-    <small>&copy; Copyright 2020, Jordan Morris</small> 
-</footer>
