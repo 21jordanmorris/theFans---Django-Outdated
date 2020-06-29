@@ -21,92 +21,32 @@
     <div class="container">
         {% for game in object_list %}
             {% if game.is_future %}
-                <a href={% url 'game_detail' game.slug %}>
-                <div class="card">
-                    <h3 class="title home">{{game.home_team}}</h3>
-                    <h3 class="title visitor">{{game.visitor_team}}</h3>
-                    <h3 class="title home home-prob">{{game.home_probability}}<span>%</span></h3>
-                    <h3 class="title visitor visitor-prob">{{game.visitor_probability}}<span>%</span></h3>
-                    <div class="bar">
-                        <div class="emptybar"></div>
-                        <div class="filledbar"></div>
+                <a class="game-card" href={% url 'game_detail' game.slug %}>
+                    <p class="date" style="display:none">{{ game.date }}</p>
+                    <div class="card">
+                        <h3 class="title home">{{game.home_team}}</h3>
+                        <h3 class="title visitor">{{game.visitor_team}}</h3>
+                        <h3 class="title home home-prob">{{game.home_probability}}<span>%</span></h3>
+                        <h3 class="title visitor visitor-prob">{{game.visitor_probability}}<span>%</span></h3>
+                        <div class="bar">
+                            <div class="emptybar"></div>
+                            <div class="filledbar"></div>
+                        </div>
+                        <div class="circle circle-top">
+                            <svg version="1.1" xmlns="https://www.w3.org/2000/svg">   
+                                <circle class="stroke" cx="60" cy="60" r="58"  stroke-dasharray="364.42" stroke-dashoffset="{{ game.get_home_prob_for_circle }}"/>
+                            </svg>
+                        </div>
+                        <div class="circle circle-bottom">
+                            <svg version="1.1" xmlns="https://www.w3.org/2000/svg">   
+                                <circle class="inner-stroke" cx="60" cy="60" r="58"  stroke-dasharray="364.42" stroke-dashoffset="{{ game.get_visitor_prob_for_circle }}"/>
+                            </svg>
+                        </div>
                     </div>
-                    <div class="circle circle-top">
-                        <svg version="1.1" xmlns="https://www.w3.org/2000/svg">   
-                            <circle class="stroke" cx="60" cy="60" r="58"  stroke-dasharray="364.42" stroke-dashoffset="{{ game.get_home_prob_for_circle }}"/>
-                        </svg>
-                    </div>
-                    <div class="circle circle-bottom">
-                        <svg version="1.1" xmlns="https://www.w3.org/2000/svg">   
-                            <circle class="inner-stroke" cx="60" cy="60" r="58"  stroke-dasharray="364.42" stroke-dashoffset="{{ game.get_visitor_prob_for_circle }}"/>
-                        </svg>
-                    </div>
-                </div>
                 </a>
             {% endif %}
         {% endfor %}
     </div>
-
-    {% comment %} {% for game in object_list|slice:":1" %}
-        <h3 style="text-align: center; color: white;">{{ game.get_tomorrow }}</h3>
-    {% endfor %}
-
-    <div class="container">
-        {% for game in object_list %}
-            {% if game.is_tomorrow %}
-                <div class="card">
-                    <h3 class="title home">{{game.home_team}}</h3>
-                    <h3 class="title visitor">{{game.visitor_team}}</h3>
-                    <h3 class="title home home-prob">{{game.home_probability}}%</h3>
-                    <h3 class="title visitor visitor-prob">{{game.visitor_probability}}%</h3>
-                    <div class="bar">
-                        <div class="emptybar"></div>
-                        <div class="filledbar"></div>
-                    </div>
-                    <div class="circle circle-top">
-                        <svg version="1.1" xmlns="https://www.w3.org/2000/svg">   
-                            <circle class="stroke" cx="60" cy="60" r="58"  stroke-dasharray="364.42" stroke-dashoffset="{{ game.get_home_prob_for_circle }}"/>
-                        </svg>
-                    </div>
-                    <div class="circle circle-bottom">
-                        <svg version="1.1" xmlns="https://www.w3.org/2000/svg">   
-                            <circle class="inner-stroke" cx="60" cy="60" r="58"  stroke-dasharray="364.42" stroke-dashoffset="{{ game.get_visitor_prob_for_circle }}"/>
-                        </svg>
-                    </div>
-                </div>
-            {% endif %}
-        {% endfor %}
-    </div>
-
-    {% for game in object_list|slice:":1" %}
-        <h2 style="text-align: center; color: white;">Completed Games</h2>
-        <h3 style="text-align: center; color: white;">{{ game.get_yesterday }}</h3>
-    {% endfor %}
-
-    <div class="container">
-        {% for game in object_list %}
-            {% if game.is_yesterday %}
-                <div class="card">
-                    <h3 class="title home">{{game.home_team}}</h3>
-                    <h3 class="title visitor">{{game.visitor_team}}</h3>
-                    <h3 class="title home home-prob">{{game.home_probability}}%</h3>
-                    <h3 class="title visitor visitor-prob">{{game.visitor_probability}}%</h3>
-                    <div class="bar">
-                        <div class="emptybar"></div>
-                        <div class="filledbar"></div>
-                    </div>
-                    <div class="circle circle-top">
-                        <svg version="1.1" xmlns="https://www.w3.org/2000/svg">   
-                            <circle class="stroke" cx="60" cy="60" r="58"  stroke-dasharray="364.42" stroke-dashoffset="{{ game.get_home_prob_for_circle }}"/>
-                        </svg>
-                    </div>
-                    <div class="circle circle-bottom">
-                        <svg version="1.1" xmlns="https://www.w3.org/2000/svg">   
-                            <circle class="inner-stroke" cx="60" cy="60" r="58"  stroke-dasharray="364.42" stroke-dashoffset="{{ game.get_visitor_prob_for_circle }}"/>
-                        </svg>
-                    </div>
-                </div>
-            {% endif %}
-        {% endfor %}
-    </div> {% endcomment %}
 </body>
+
+<script src='{% static 'games.js' %}'></script>

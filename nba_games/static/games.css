@@ -17,6 +17,12 @@ body {
     color: rgb(10, 37, 189);
 }
 
+.date-header {
+    text-align: center; 
+    margin-top: 2em; 
+    color: white;
+}
+
 .container {
     display: grid;
     grid-template-columns: repeat(auto-fit, 300px);
