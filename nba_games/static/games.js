@@ -63,6 +63,11 @@ for (var i = 0; i < days.length; i++)
 
     for (var j = 0; j < days[i].length; j++)
     {
+        if (i >= 3)
+        {
+            days[i][j].style.cursor = "default";
+            days[i][j].setAttribute("href", "javascript:");
+        }
         cardContainer.appendChild(days[i][j]);
     }
 
