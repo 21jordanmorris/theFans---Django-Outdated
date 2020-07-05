@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.contrib.auth.decorators import login_required
+from django.db import connection
 
 from .models import Game, Message
 from django.apps import apps
@@ -33,7 +34,7 @@ def game_detail(request, slug=None):
         "visitor_user": visitor_user,
         "room_name": slug,
     }
-    
+
     connection.close()
 
     return render(request, "game_detail.html", context)
