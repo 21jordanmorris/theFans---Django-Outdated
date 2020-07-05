@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.db import connection
 
 from .models import Post
 from .forms import PostForm
@@ -23,6 +24,8 @@ def post_create(request):
         "title": "Create Post",
     }
 
+    connection.close()
+
     return render(request, "post_form.html", context)
 
 def post_detail(request, slug=None):
@@ -35,6 +38,8 @@ def post_detail(request, slug=None):
         "title": instance.title,
         "instance": instance,
     }
+
+    connection.close()
 
     return render(request, "post_detail.html", context)
 
@@ -50,6 +55,8 @@ def post_list(request):
         "title": "Posts",
         "page_obj": page_obj,
     }
+
+    connection.close()
 
     return render(request, "posts_index.html", context)
 
@@ -74,6 +81,8 @@ def post_update(request, slug=None):
         "button_name": "Update",
     }
 
+    connection.close()
+
     return render(request, "post_form.html", context)
 
 def post_delete(request, slug=None):
@@ -82,4 +91,5 @@ def post_delete(request, slug=None):
     instance = get_object_or_404(Post, slug=slug)
     instance.delete()
     messages.success(request, instance.title + " deleted.")
+    connection.close()
     return redirect('post_list')

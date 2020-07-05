@@ -33,6 +33,9 @@ def game_detail(request, slug=None):
         "visitor_user": visitor_user,
         "room_name": slug,
     }
+    
+    connection.close()
+
     return render(request, "game_detail.html", context)
 
 
