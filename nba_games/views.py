@@ -32,7 +32,6 @@ def game_detail(request, slug=None):
         "home_user": home_user,
         "visitor_user": visitor_user,
         "room_name": slug,
-        "posts": posts,
     }
     return render(request, "game_detail.html", context)
 
