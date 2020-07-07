@@ -19,9 +19,7 @@
 
         <h4 style="color:#fff;">{{ instance.summary }}</h4>
 
-        <p>By: {{ instance.writer }}</p>
-
-        <p>Updated: {{ instance.updated }}</p><br/>
+        <p>By: {{ instance.writer }} | {{ instance.timestamp }}</p><br/>
 
         {% if instance.image %}
             <img class="header-img" src='{{ instance.image.url }}'/>
